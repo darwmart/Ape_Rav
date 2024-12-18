@@ -1,16 +1,19 @@
 <template>
-	<div class="md:flex md:flex-col gap-5 md:p-16 grid grid-cols-1 ">
+	<div class="md:flex md:flex-col gap-5 md:p-16 grid grid-cols-1 h-screen ">
 		<!-- Primera Sección: Contenedores con contenido e imagen -->
 		<div class="md:flex md:gap-5 md:justify-between ">
 			<div
 				v-for="(image, index) in imagePaths"
 				:key="index"
-				class="bg-[length:353px_235px] md:w-[353px] md:h-[235px] w-[360px] h-[160px] my-card"
+				class=" md:w-[360px] md:h-[235px]  my-card"
 				:style="{
 					backgroundImage:
 						'url(' +
 						image.path +
-						'',
+						'), linear-gradient(180deg, rgba(0, 0, 0, 0) 16%, #315CA0 85.5%)',
+					backgroundPosition: 'center',
+					borderRadius: '10px',
+					backgroundBlendMode: 'multiply',
 					position: 'relative',
 				}">
 				<!-- Contenedor para el título y el número en la parte inferior -->
@@ -27,17 +30,20 @@
 		</div>
 
 		<!-- Segunda Sección: Gráficos -->
-		<div class="hidden md:grid md:gap-5  md:grid-cols-1 lg:grid-cols-1 md:h-[235px] ">
+		<div class="hidden md:grid md:gap-5  md:grid-cols-1 lg:grid-cols-1 ">
 			<div
-				class="md:p-4 md:border my-card rounded-lg bg-custom-gradient  max-w-full sm:max-w-full ">
+				class="md:border my-card rounded-lg bg-custom-gradient  max-w-full sm:max-w-full md:h-60 p-5">
 				<LineChart />
 			</div>
-			
+			<div
+				class="p-4 border my-card border-azulBarraApe rounded-lg bg-white md:w-full md:max-w-full md:text-sm md:h-60">
+				<BarChart />
+			</div>
 		</div>
 
 		<!-- Tercera Sección: Tabla de Datos -->
 		<div class="md:grid md:grid-cols-2 gap-4 border border-azulBarraApe rounded-lg ">
-			<table class="border-collapse my-card">
+			<!--<table class="border-collapse my-card">
 				<thead>
 					<tr>
 						<th class="p-3 text-left border-b bg-gray-200 font-bold ">
@@ -82,6 +88,7 @@
 										d="M12.5628 8.01577C12.7486 8.09358 12.888 8.25577 13.0811 8.33358C14.0149 8.71046 14.8942 7.90139 14.8029 6.77358C14.7834 6.53264 14.6644 6.35358 14.6587 6.13796C15.6952 5.92889 16.8344 6.68171 17.2769 7.77108C17.9011 9.30671 17.2956 11.1386 15.9315 11.7733C13.8609 12.737 11.8034 10.4073 12.5636 8.01483L12.5628 8.01577Z"
 										fill="white" />
 								</svg>
+								
 
 								<span class="">Fecha de Acercamiento</span>
 							</div>
@@ -95,22 +102,19 @@
 						<td class="p-3 border-b">{{ row.Fecha }}</td>
 					</tr>
 				</tbody>
-			</table>
-			<div
-				class="p-4 border my-card border-azulBarraApe rounded-lg bg-white md:w-full md:max-w-full ">
-				<BarChart />
-			</div>
+			</table>-->
 		</div>
 	</div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import LineChart from "@/components/LineChart.vue";
 import BarChart from "@/components/BarChart.vue";
-import EnFormacion from "@/assets/images/EnFormacion.png";
-import Certificados from "@/assets/images/Certificados.png";
-import EnProceso from "@/assets/images/PorCertificar.png";
+import EnFormacion from "@/assets/images/Orientados.svg";
+import Certificados from "@/assets/images/Colocados.svg";
+import EnProceso from "@/assets/images/Inscritos.svg";
+import axios from 'axios';
 
 // Datos de las imágenes estáticas y sus títulos
 const imagePaths = ref([
@@ -132,13 +136,24 @@ const imagePaths = ref([
 
 ]);
 
-// Datos de ejemplo para la tabla
-const tableData = ref([
-	{ Departamento: 1, Estado: "Jorge Raul", Fecha: 2004 },
-	{ Departamento: 2, Estado: "Pedronel Santa", Fecha: 2001 },
-	{ Departamento: 3, Estado: "Alfredo Quinquilla", Fecha: 1967 },
-	{ Departamento: 4, Estado: "Jorge Raul", Fecha: 2004 },
-]);
+// Función para obtener los totales desde la API
+const fetchTotales = async () => {
+  try {
+    const response = await axios.get('http://localhost:5010/api/v1/metas/ejecuciónAnual');
+    const data = response.data;
+
+    // Actualizamos los counts en la lista imagePaths
+    imagePaths.value[0].count = data.total_orientados;
+    imagePaths.value[1].count = data.total_colocados;
+    imagePaths.value[2].count = data.total_inscritos;
+  } catch (error) {
+    console.error('Error al obtener los totales:', error);
+  }
+};
+
+onMounted(() => {
+	fetchTotales();
+});
 </script>
 
 <style scoped>
