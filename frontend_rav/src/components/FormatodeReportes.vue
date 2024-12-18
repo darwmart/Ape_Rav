@@ -19,7 +19,7 @@
 		<div class=" flex flex-col xl:flex-row xl:items-start  w-full max-w-9xl space-y-8 xl:space-y-9 xl:space-x-10 ">
 			<!-- Formulario a la Izquierda -->
 			<div class="flex-grow  max-w-md lg:max-w-xl  bg-white rounded-lg shadow-md w-72 p-3">
-				<div class="text-center">
+				<center>
 					<h3>Seleccione el tipo de reporte</h3>
 				</center>
 				<!-- Selección de Formato -->
@@ -84,16 +84,14 @@
 					</div>
 				</div>
 
-        <!-- Botón de Búsqueda -->
-        <button
-          :disabled="loading"
-          class="w-full bg-customPurple text-lg text-amarillo font-bold py-2 rounded-lg"
-          @click="handleDownloadReport"
-        >
-          <span v-if="!loading">Generar Reporte</span>
-          <span v-else>Generando...</span>
-        </button>
-      </div>
+				<!-- Botón de Búsqueda -->
+				<button
+					class="w-full bg-customPurple text-lg cursor-pointer border-none text-amarillo font-bold py-2 rounded-lg shadow-md mt-4"
+					:disabled="loading" @click="handleDownloadExcel">
+					<span v-if="!loading">Generar Reporte</span>
+					<span v-else>Generando...</span>
+				</button>
+			</div>
 			<!-- Imagen a la Izquierda -->
 			<div class="flex-1 max-w-md lg:max-w-lg p-1">
 				<img :src="PersonaReportes" alt="Persona sonriendo" class="h-[700px] w-[697px] -mt-60" />
@@ -105,7 +103,6 @@
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
-import ExcelJS from "exceljs";
 import Reportes from "@/assets/images/Reportes.svg";
 import PersonaReportes from "@/assets/images/PersonaReportes.svg";
 
@@ -203,7 +200,7 @@ async function handleDownloadExcel() {
         const downloadLink = document.createElement("a");
         downloadLink.href = file; // Usar la URL proporcionada por el servidor
         downloadLink.setAttribute("download", file.split("/").pop()); // Extraer el nombre del archivo
-        document.body.appendChild( );
+        document.body.appendChild(downloadLink);
         downloadLink.click();
         downloadLink.remove();
     } catch (error) {
@@ -223,7 +220,7 @@ async function handleDownloadExcel() {
 	-moz-appearance: none;
 	width: 16px;
 	height: 16px;
-	border: 2px solid #315CA0;
+	border: 2px solid #71277A;
 	/* Color morado del borde */
 	border-radius: 50%;
 	margin-right: 0.5rem;
@@ -232,9 +229,9 @@ async function handleDownloadExcel() {
 }
 
 .radio-button input[type="radio"].custom-radio:checked {
-	background-color: #315CA0;
+	background-color: #71277A;
 	/* Fondo morado al seleccionar */
-	border-color: #315CA0;
+	border-color: #71277A;
 	/* Asegura que el borde sea morado al seleccionarse */
 }
 
