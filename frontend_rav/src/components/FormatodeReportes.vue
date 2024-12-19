@@ -25,17 +25,7 @@
 					<h3>Seleccione el tipo de reporte</h3>
 				</div>
 				<!-- Selección de tipo de reporte -->
-				<div class="radio-button text-base grid grid-flow-col items-center mx-9 mr-3">
-          <input 
-            type="radio" 
-            id="estadisticas" 
-            name="reportType" 
-            value="EstadisticasVictima" 
-            class="custom-radio" 
-            v-model="selectedReport" 
-          />
-          <label for="estadisticas">Estadísticas de victima</label>
-
+				<div class="radio-button text-base grid grid-flow-col items-center mx-9 mr-3">        
           <input 
             type="radio" 
             id="orientados" 
@@ -88,72 +78,7 @@
         </div>
 
 
-        <!-- Campo de búsqueda por C.C. (Estadísticas del Ciudadano) -->
-        <div v-if="selectedReport === 'EstadisticasVictima'" class="mb-4">
-          <label for="ccSearch">Buscar por numero de identificación:</label>
-          <input
-            type="text"
-            id="ccSearch"
-            v-model="searchCC"
-            placeholder="Ingrese el número de identificación"
-            class="block p-2 rounded-lg w-full"
-          />
-        </div>
-
-        <!-- Checkbox para desplegar filtros adicionales solo si el reporte es 'Estadísticas del Ciudadano' -->
-        <div v-if="selectedReport === 'EstadisticasVictima'" class="mb-4 flex items-center">
-          <input 
-            type="checkbox" 
-            id="needsSearch" 
-            v-model="needsSearch" 
-            class="mr-2" 
-          />
-          <label for="needsSearch">¿Necesitas una búsqueda avanzada?</label>
-        </div>
-
-        <!-- Filtros adicionales solo se muestran si 'needsSearch' es verdadero y el reporte es 'Estadísticas del Ciudadano' -->
-        <div v-if="needsSearch && selectedReport === 'EstadisticasVictima'" class="space-y-4">
-          <!-- Filtro de Género -->
-          <div class="mb-4">
-            <label for="genero">Seleccione el género:</label>
-            <select v-model="selectedGenero" id="genero" class="block p-4 rounded-lg w-full">
-              <option disabled value="">Seleccione un género</option>
-              <option value="Hombre">Hombre</option>
-              <option value="Mujer">Mujer</option>
-              <option value="LGBTI">LGBTI</option>
-              <option value="Intersexual">Intersexual</option>
-              <option value="No informa">No informa</option>
-            </select>
-          </div>
-
-          <!-- Filtro de Grupos Etarios -->
-          <div class="mb-4">
-            <label for="grupo_c">Seleccione el grupo etario:</label>
-            <select v-model="selectedEtario" id="grupo_etario" class="block p-4 rounded-lg w-full">
-              <option disabled value="">Seleccione un grupo etario</option>
-              <option value="0-14">Niños</option>
-              <option value="15-17">Adolescentes</option>
-              <option value="18-25">Jóvenes</option>
-              <option value="26-59">Adultos</option>
-              <option value="60+">Adultos mayores</option>
-            </select>
-          </div>
-
-          <!-- Filtro de Procedencia Étnica -->
-          <div class="mb-4">
-            <label for="procedencia_etnica">Seleccione la procedencia étnica:</label>
-            <select v-model="selectedEtnica" id="procedencia_etnica" class="block p-4 rounded-lg w-full">
-              <option disabled value="">Seleccione una étnia</option>
-              <option value="Indígena">Indígena</option>
-              <option value="Afrocolombiano">Afrocolombiano</option>
-              <option value="Rom">Rom</option>
-              <option value="Raizal">Raizal</option>
-              <option value="Palenquero">Palenquero</option>
-              <option value="Mestizo">Mestizo</option>
-              <option value="Blanco">Blanco</option>
-            </select>
-          </div>
-        </div>
+       
 
         <!-- Botón de Búsqueda -->
         <button
