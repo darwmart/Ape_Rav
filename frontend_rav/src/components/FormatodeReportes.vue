@@ -1,14 +1,16 @@
 <template>
-	<div class="min-h-screen p-4 flex flex-col -mt-20 ">
+	<div class="min-h-screen p-4 flex flex-col -mt-20">
 		<!-- Sección Superior (Título, Icono, Información del Ciudadano) -->
-		<div class=" flex flex-col md:flex-row items-center justify-between p-2 rounded-lg w-full max-w-7xl mb-1">
+		<div class="flex flex-col md:flex-row items-center justify-between p-2 rounded-lg w-full max-w-7xl mb-1">
 			<!-- Icono y Título -->
-			<div class="flex items-center mb-4 md:-0 ">
-				<div class="p-6 bg-customPurple rounded-full ">
+			<div class="flex items-center mb-4 md:-0">
+				<div class="p-6 bg-customPurple rounded-full">
 					<!-- Icono SVG -->
-					<img :src="Reportes" alt=" Icono de Reportes" class="w-16 h-16 " />
+					<img :src="Reportes" 
+						alt=" Icono de Reportes" 
+					    class="w-16 h-16 " />
 				</div>
-				<div class="ml-4 text-center md:text-left mt-14 ">
+				<div class="ml-4 text-center md:text-left mt-14">
 					<p class="text-black -mb-1 text-2xl md:text-[37px]">Generar</p>
 					<h2 class="text-customPurple text-5xl md:text-[94px] mt-0 font-bold">Reportes</h2>
 				</div>
@@ -16,85 +18,81 @@
 		</div>
 
 		<!-- Sección Central (Imagen y Formulario) -->
-		<div class=" flex flex-col xl:flex-row xl:items-start  w-full max-w-9xl space-y-8 xl:space-y-9 xl:space-x-10 ">
+		<div class="flex flex-col xl:flex-row xl:items-start  w-full max-w-9xl space-y-8 xl:space-y-9 xl:space-x-20 ">
 			<!-- Formulario a la Izquierda -->
 			<div class="flex-grow  max-w-md lg:max-w-xl  bg-white rounded-lg shadow-md w-72 p-3">
-				<center>
+				<div class="text-center">
 					<h3>Seleccione el tipo de reporte</h3>
-				</center>
-				<!-- Selección de Formato -->
-				<div class="mb-4">
-					<label class="block text-gray-700 text-sm font-semibold -mb-6 "></label>
-					<br>
-					<div class="radio-button text-base grid grid-flow-col items-center mx-9 mr-3">
-						<input type="radio" id="orientados" name="role" value="Orientados" class="custom-radio"
-							v-model="selectedRole" />
-						<label for="orientados">Exportar Orientaciones</label>
-						<input type="radio" id="inscritos" name="role" value="Inscritos" class="custom-radio"
-							v-model="selectedRole" />
-						<label for="inscritos">Exportar Inscritos</label>
-						<input type="radio" id="colocados" name="role" value="Colocados" class="custom-radio"
-							v-model="selectedRole" />
-						<label for="colocados">Exportar Colocados</label>
-					</div>
-
-					<br>
-					<div class="space-y-2">
-						<!--<label
-				class="block p-4 rounded-lg shadow-sm border cursor-pointer transition-all duration-300"
-				:class="{'bg-customPurple text-white font-bold': selectedFormat === 'pdf', 'bg-gray-100': selectedFormat !== 'pdf'}"
-				@click="selectFormat('pdf')">
-				PDF
-			  </label>-->
-						<label class="hidden p-4 rounded-lg shadow-sm border cursor-pointer transition-all duration-300"
-							:class="{ 'bg-customPurple text-white font-bold': selectedFormat === 'excel', 'bg-gray-100': selectedFormat !== 'excel' }"
-							@click="selectFormat('excel')">
-							EXCEL
-						</label>
-
-					</div>
 				</div>
+				<!-- Selección de tipo de reporte -->
+				<div class="radio-button text-base grid grid-flow-col items-center mx-9 mr-3">        
+          <input 
+            type="radio" 
+            id="orientados" 
+            name="reportType" 
+            value="Orientados" 
+            class="custom-radio" 
+            v-model="selectedReport" 
+          />
+          <label for="orientados">Orientados</label>
 
-				<!-- Selección de Departamento -->
+		  <input 
+            type="radio" 
+            id="colocados" 
+            name="reportType" 
+            value="Colocados" 
+            class="custom-radio" 
+            v-model="selectedReport" 
+          />
+          <label for="colocados">Colocados</label>
 
-				<div class="mb-4">
-					<div class="grid grid-wrap">
-						<select v-model="selectedDepartamento"
-							class="block p-4 rounded-lg focus:outline-none focus:ring-2 font-bold border cursor-pointer text-negro h-12 border-none bg-grisInput"
-							id="departamento">
-							<option disabled value="">Seleccione Departamento</option>
-							<option v-for="departamento in departamentos" :key="departamento.code"
-								:value="departamento.code" class="bg-white ">
-								{{ departamento.name }}
-							</option>
-						</select>
-					</div>
-				</div>
+		  <input 
+            type="radio" 
+            id="inscritos" 
+            name="reportType" 
+            value="Inscritos" 
+            class="custom-radio" 
+            v-model="selectedReport" 
+          />
+          <label for="inscritos">Inscritos</label>
+        </div>
 
-				<!-- Selección de Fechas -->
-				<div class="mb-4">
-					<label class="block text-negro text-sm font-semibold mb-2">Seleccione el rango de fechas.</label>
-					<div class="flex items-center space-x-4">
-						<input type="date"
-							class="w-1/2 p-2 border rounded text-gray-700 bg-grisInput focus:outline-none focus:ring-2 focus:ring-customPurple"
-							placeholder="Desde" v-model="dateRange.from" />
-						<input type="date"
-							class="w-1/2 p-2 border rounded text-negro bg-grisInput focus:outline-none focus:ring-2 focus:ring-customPurple"
-							placeholder="Hasta" v-model="dateRange.to" />
-					</div>
-				</div>
+        <!-- Selección de Departamento -->
+        <div v-if="selectedReport" class="mb-4">
+          <select v-model="selectedDepartamento" class="block p-4 rounded-lg w-full">
+            <option disabled value="">Buscar por regional</option>
+            <option v-for="departamento in departamentos" :key="departamento.code" :value="departamento.code">
+              {{ departamento.name }}
+            </option>
+          </select>
+        </div>
 
-				<!-- Botón de Búsqueda -->
-				<button
-					class="w-full bg-customPurple text-lg cursor-pointer border-none text-amarillo font-bold py-2 rounded-lg shadow-md mt-4"
-					:disabled="loading" @click="handleDownloadExcel">
-					<span v-if="!loading">Generar Reporte</span>
-					<span v-else>Generando...</span>
-				</button>
-			</div>
+        <!-- Filtros dinámicos -->
+        <!-- Rango de Fechas (Historial de Tickets, Logs de Auditoría, Estadísticas del Ciudadano) -->
+        <div v-if="selectedReport === 'EstadisticasVictima' || selectedReport === 'Orientados' || selectedReport === 'Colocados' || selectedReport === 'Inscritos'" class="mb-4">
+          <label>Seleccione el rango de fechas:</label>
+          <div class="flex items-center space-x-4">
+            <input type="date" v-model="dateRange.from" class="w-1/2 p-2 rounded-lg" />
+            <input type="date" v-model="dateRange.to" class="w-1/2 p-2 rounded-lg" />
+          </div>
+        </div>
+
+
+       
+
+        <!-- Botón de Búsqueda -->
+        <button
+          :disabled="loading"
+          class="w-full bg-customPurple text-lg text-amarillo font-bold py-2 rounded-lg"
+          @click="handleDownloadReport"
+        >
+          <span v-if="!loading">Generar Reporte</span>
+          <span v-else>Generando...</span>
+        </button>
+      </div>
 			<!-- Imagen a la Izquierda -->
-			<div class="flex-1 max-w-md lg:max-w-lg p-1">
-				<img :src="PersonaReportes" alt="Persona sonriendo" class="h-[700px] w-[697px] -mt-60" />
+			<div class="flex-1 max-w-md lg:max-w-lg p-5">
+				<img :src="PersonaReportes" alt="Persona sonriendo" class="h-auto max-w-auto -mt-64" />
 			</div>
 		</div>
 	</div>
@@ -103,112 +101,310 @@
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
+import ExcelJS from "exceljs";
 import Reportes from "@/assets/images/Reportes.svg";
 import PersonaReportes from "@/assets/images/PersonaReportes.svg";
+import logoRavBlanco from '@/assets/images/logoAPEBlanco.png';
 
-const selectedRole = ref("");
-const selectedFormat = ref("excel");
-const selectedDepartamento = ref("");
-const dateRange = ref({ from: "", to: "" });
-
-
-const departamentos = ref([
-	{ name: "Amazonas", code: "91" },
-	{ name: "Antioquia", code: "05" },
-	{ name: "Arauca", code: "81" },
-	{ name: "Atlantico", code: "08" },
-	{ name: "Bolivar", code: "13" },
-	{ name: "Boyacá", code: "15" },
-	{ name: "Caldas", code: "17" },
-	{ name: "Caquetá", code: "18" },
-	{ name: "Casanare", code: "85" },
-	{ name: "Cauca", code: "19" },
-	{ name: "Cesar", code: "20" },
-	{ name: "Chocó", code: "27" },
-	{ name: "Cundinamarca", code: "25" },
-	{ name: "Cordoba", code: "23" },
-	{ name: "Guainia", code: "94" },
-	{ name: "Guaviare", code: "95" },
-	{ name: "Huila", code: "41" },
-	{ name: "La Guajira", code: "44" },
-	{ name: "Magdalena", code: "47" },
-	{ name: "Meta", code: "50" },
-	{ name: "Nariño", code: "52" },
-	{ name: "Norte de Santander", code: "54" },
-	{ name: "Putumayo", code: "86" },
-	{ name: "Quindio", code: "63" },
-	{ name: "Risaralda", code: "66" },
-	{ name: "San Andres, Providencia y Santa Catalina", code: "88" },
-	{ name: "Santander", code: "68" },
-	{ name: "Sucre", code: "70" },
-	{ name: "Tolima", code: "73" },
-	{ name: "Valle del Cauca", code: "76" },
-	{ name: "Vaupés", code: "97" },
-	{ name: "Vichada", code: "99" },
-]);
+// Variables reactivas
+const selectedReport = ref(""); // Tipo de reporte seleccionado
+const selectedDepartamento = ref(""); // Departamento seleccionado
+const dateRange = ref({ from: "", to: "" }); // Rango de fechas
 const loading = ref(false);
+const needsSearch = ref(false);
 
-function selectFormat(format) {
-	selectedFormat.value = format;
-}
+// Lista de departamentos
+const departamentos = ref([
+  { name: "Amazonas", code: "91" },
+  { name: "Antioquia", code: "05" },
+  { name: "Arauca", code: "81" },
+  { name: "Atlantico", code: "08" },
+  { name: "Bolivar", code: "13" },
+  { name: "Boyacá", code: "15" },
+  { name: "Caldas", code: "17" },
+  { name: "Caquetá", code: "18" },
+  { name: "Casanare", code: "85" },
+  { name: "Cauca", code: "19" },
+  { name: "Cesar", code: "20" },
+  { name: "Chocó", code: "27" },
+  { name: "Cundinamarca", code: "25" },
+  { name: "Cordoba", code: "23" },
+  { name: "Guainia", code: "94" },
+  { name: "Guaviare", code: "95" },
+  { name: "Huila", code: "41" },
+  { name: "La Guajira", code: "44" },
+  { name: "Magdalena", code: "47" },
+  { name: "Meta", code: "50" },
+  { name: "Nariño", code: "52" },
+  { name: "Norte de Santander", code: "54" },
+  { name: "Putumayo", code: "86" },
+  { name: "Quindio", code: "63" },
+  { name: "Risaralda", code: "66" },
+  { name: "San Andres, Providencia y Santa Catalina", code: "88" },
+  { name: "Santander", code: "68" },
+  { name: "Sucre", code: "70" },
+  { name: "Tolima", code: "73" },
+  { name: "Valle del Cauca", code: "76" },
+  { name: "Vaupés", code: "97" },
+  { name: "Vichada", code: "99" },
+]);
 
+// Validación de los inputs
 function validateInputs() {
-	if (!selectedRole.value || !selectedFormat.value || !selectedDepartamento.value) {
-		alert("Por favor, complete todos los campos.");
-		return false;
-	}
-	if (!dateRange.value.from || !dateRange.value.to) {
-		alert("Por favor, seleccione un rango de fechas.");
-		return false;
-	}
-	return true;
-
+  if (!selectedReport.value || !selectedDepartamento.value || !dateRange.value.from || !dateRange.value.to) {
+    alert("Por favor, complete todos los campos.");
+    return false;
+  }
+  return true;
 }
 
-function getEndpoint() {
-	const endpoints = {
-		Orientados: "http://localhost:5010/api/v1/orientaciones/exportarOrientaciones",
-		Inscritos: "http://localhost:5010/api/v1/archivo/exportarInscritos",
-		Colocados: "http://localhost:5010/api/v1/archivo/exportarColocadps",
-	};
-	console.log('rol seleccionado', selectedRole.value);
+// Función para manejar la descarga del reporte
+async function handleDownloadReport() {
+  if (!validateInputs()) return;
 
-	return endpoints[selectedRole.value];
+  loading.value = true;
+
+  try {
+    let endpoint;
+    let worksheetName;
+
+    // Configuración de los endpoints y nombres de los reportes
+    if (selectedReport.value === "EstadisticasVictima") {
+      endpoint = "http://127.0.0.1:5000/estadistica_ciudadano";
+      worksheetName = "Estadísticas Victimas";
+	} else if (selectedReport.value === "Orientados") {
+      endpoint = "http://localhost:5000/ac_orientados";
+      worksheetName = "Orientados";
+    } else if (selectedReport.value === "Colocados") {
+      endpoint = "http://localhost:5000/ac_colocaciones";
+      worksheetName = "Colocados";
+	} else if (selectedReport.value === "Inscritos") {
+      endpoint = "http://localhost:5000/ac_inscritos";
+      worksheetName = "Inscritos";
+    } else {
+      alert("Tipo de reporte no válido.");
+      loading.value = false;
+      return;
+    }
+
+    // Buscar el nombre del departamento según el código seleccionado
+    const departamentoNombre = departamentos.value.find(
+      (d) => d.code === selectedDepartamento.value
+    )?.name || "";
+
+    // Verificar datos que se enviarán
+    console.log("Nombre del departamento enviado:", departamentoNombre);
+    console.log("Fechas enviadas:", dateRange.value.from, dateRange.value.to);
+
+    // Solicitud al endpoint
+    const response = await axios.get(endpoint, {
+      params: {
+        departamento: departamentoNombre,
+        from: dateRange.value.from,
+        to: dateRange.value.to,
+      },
+    });
+
+    const data = response.data;
+
+    // Validación de datos recibidos
+    if (!data || !Array.isArray(data) || data.length === 0) {
+      alert("No se encontraron datos para el reporte seleccionado.");
+      loading.value = false;
+      return;
+    }
+
+    // Generar el reporte
+    await generateReport(data, worksheetName, {
+      imageBase64: "LogoRavBlanco", // Reemplazar con la imagen en base64
+      regional: departamentoNombre,
+      responsable: "Nombre del usuario activo",
+      correo: "Correo del usuario activo",
+    });
+  } catch (error) {
+    console.error("Error al manejar la descarga del reporte:", error);
+    alert("Ocurrió un error al manejar la descarga del reporte.");
+  } finally {
+    loading.value = false;
+  }
 }
 
-async function handleDownloadExcel() {
-    if (!validateInputs()) return;
+// Función para convertir imagen a Base64
+async function getBase64Image(imagePath) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = 'Anonymous';
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      const dataURL = canvas.toDataURL('image/png');
+      resolve(dataURL.replace(/^data:image\/png;base64,/, ''));
+    };
+    img.onerror = (error) => reject(error);
+    img.src = imagePath;
+  });
+}
 
-    loading.value = true;
-    const endpoint = getEndpoint();
-    const payload = {
-        departamento: selectedDepartamento.value,
-        dateRange: dateRange.value,
+const generateReport = async (data, worksheetName, reportDetails) => {
+  try {
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet(worksheetName);
+
+    // Espacio para la sección superior (filas 1 a 7)
+    for (let i = 1; i <= 7; i++) {
+      worksheet.getRow(i).height = 20;
+    }
+
+    // Convertir la imagen a Base64 y agregarla
+    const base64Image = await getBase64Image(logoRavBlanco);
+    const imageId = workbook.addImage({
+      base64: base64Image,
+      extension: 'png',
+    });
+    worksheet.addImage(imageId, 'A1:B7');
+
+    // Validar antes de combinar celdas
+    const mergeCellsSafely = (range) => {
+      const [startCell, endCell] = range.split(':');
+      const start = worksheet.getCell(startCell);
+      const end = worksheet.getCell(endCell);
+
+      // Verificar si ya están combinadas
+      if (!start.isMerged && !end.isMerged) {
+        worksheet.mergeCells(range);
+      }
     };
 
-    try {
-        // Hacer la solicitud para generar el archivo
-        const response = await axios.get(endpoint, payload);
+    // Fondo color para celdas combinadas de la imagen
+    mergeCellsSafely('A1:B7');
+    const imageCellsRange = ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7'];
+    imageCellsRange.forEach((cell) => {
+      worksheet.getCell(cell).fill = {
+        type: 'pattern',
+        pattern: 'solid',
+        fgColor: { argb: '315CA0' }, // Fondo color #315CA0
+      };
+      worksheet.getCell(cell).alignment = { horizontal: 'center', vertical: 'middle', wrapText: true }; // Alineación con ajuste de texto
+    });
 
-        // Verificar si la respuesta incluye la URL del archivo
-        const { file } = response.data;
-        if (!file) {
-            throw new Error("El servidor no devolvió una URL para descargar el archivo.");
-        }
+    // Título del reporte
+    mergeCellsSafely('C1:H3');
+    const titleCell = worksheet.getCell('C1');
+    titleCell.value = `Reporte ${worksheetName}`;
+    titleCell.font = { size: 35, bold: true, color: { argb: 'FFFFFF' } };
+    titleCell.alignment = { horizontal: 'center', vertical: 'middle', wrapText: true }; // Alineación con ajuste de texto
+    titleCell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: '315CA0' } };
 
-        // Crear un enlace para descargar el archivo
-        const downloadLink = document.createElement("a");
-        downloadLink.href = file; // Usar la URL proporcionada por el servidor
-        downloadLink.setAttribute("download", file.split("/").pop()); // Extraer el nombre del archivo
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        downloadLink.remove();
-    } catch (error) {
-        console.error("Error al generar el reporte:", error);
-    } finally {
-        loading.value = false;
-    }
-}
+    // Campo "Fecha de generación"
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleDateString('es-ES', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    });
+    mergeCellsSafely('F6:H7');
+    const dateCell = worksheet.getCell('F6');
+    dateCell.value = `Fecha de generación: ${formattedDate}`;
+    dateCell.font = { size: 13, bold: true, color: { argb: 'FFFFFF' } };
+    dateCell.alignment = { horizontal: 'center', vertical: 'middle', wrapText: true }; // Alineación con ajuste de texto
+    dateCell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: '315CA0' } };
+
+    // Otros detalles del reporte
+    mergeCellsSafely('C4:E5');
+    const regionalCell = worksheet.getCell('C4');
+    regionalCell.value = `Regional: ${reportDetails.regional}`;
+    regionalCell.font = { size: 13, bold: true, color: { argb: 'FFFFFF' } };
+    regionalCell.alignment = { horizontal: 'center', vertical: 'middle', wrapText: true }; // Alineación con ajuste de texto
+    regionalCell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: '315CA0' } };
+
+    mergeCellsSafely('C6:E7');
+    const responsableCell = worksheet.getCell('C6');
+    responsableCell.value = `Responsable de generación: ${reportDetails.responsable}`;
+    responsableCell.font = { size: 13, bold: true, color: { argb: 'FFFFFF' } };
+    responsableCell.alignment = { horizontal: 'center', vertical: 'middle', wrapText: true }; // Alineación con ajuste de texto
+    responsableCell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: '315CA0' } };
+
+    mergeCellsSafely('F4:H5');
+    const correoCell = worksheet.getCell('F4');
+    correoCell.value = `Correo: ${reportDetails.correo}`;
+    correoCell.font = { size: 13, bold: true, color: { argb: 'FFFFFF' } };
+    correoCell.alignment = { horizontal: 'center', vertical: 'middle', wrapText: true }; // Alineación con ajuste de texto
+    correoCell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: '315CA0' } };
+
+    // Establecer los encabezados de la tabla comenzando en A9
+    const headers = Object.keys(data[0]).map((key) => ({
+      header: key.replace(/_/g, ' ').toUpperCase(),
+      key,
+      width: 20,
+    }));
+
+    // Filas para los encabezados de la tabla
+    worksheet.getRow(9).values = headers.map((h) => h.header);
+    worksheet.getRow(9).eachCell((cell) => {
+      cell.fill = {
+        type: 'pattern',
+        pattern: 'solid',
+        fgColor: { argb: '315CA0' },
+      };
+      cell.font = { color: { argb: 'FFFFFF' }, bold: true };
+      cell.alignment = { horizontal: 'center', vertical: 'middle', wrapText: true }; // Alineación con ajuste de texto
+    });
+
+    // Ajustar el ancho de las celdas según el contenido
+    const setColumnWidths = (worksheet, data) => {
+      Object.keys(data[0]).forEach((key, colIndex) => {
+        const column = worksheet.getColumn(colIndex + 1);
+        let maxLength = 0;
+        // Buscar el contenido más largo en la columna
+        data.forEach((item) => {
+          const value = item[key];
+          if (value) {
+            maxLength = Math.max(maxLength, value.toString().length);
+          }
+        });
+        // Establecer un ancho mínimo si es necesario
+        column.width = Math.max(maxLength + 2, 15); // Un valor mínimo de 15 para no ser demasiado estrecho
+      });
+    };
+
+    // Llamar a la función después de agregar los datos de la tabla
+    setColumnWidths(worksheet, data);
+
+    // Agregar datos de la tabla a partir de la fila 10
+    data.forEach((item, index) => {
+      const row = worksheet.getRow(10 + index);
+      Object.values(item).forEach((value, colIndex) => {
+        row.getCell(colIndex + 1).value = value;
+        row.getCell(colIndex + 1).alignment = { horizontal: 'center', vertical: 'middle', wrapText: true }; // Alineación con ajuste de texto
+        row.getCell(colIndex + 1).border = {
+          top: { style: 'thin' },
+          bottom: { style: 'thin' },
+          left: { style: 'thin' },
+          right: { style: 'thin' },
+        };
+      });
+    });
+
+    // Descargar el reporte
+    const buffer = await workbook.xlsx.writeBuffer();
+    const blob = new Blob([buffer], {
+      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `Reporte ${worksheetName.replace(/ /g, ' ')}.xlsx`;
+    link.click();
+
+    alert('Reporte generado exitosamente.');
+  } catch (error) {
+    console.error('Error al generar el reporte:', error);
+    alert('Ocurrió un error al generar el reporte. Por favor, intente nuevamente.');
+  }
+};
+
 
 </script>
 
@@ -220,7 +416,7 @@ async function handleDownloadExcel() {
 	-moz-appearance: none;
 	width: 16px;
 	height: 16px;
-	border: 2px solid #71277A;
+	border: 2px solid #315CA0;
 	/* Color morado del borde */
 	border-radius: 50%;
 	margin-right: 0.5rem;
@@ -229,9 +425,9 @@ async function handleDownloadExcel() {
 }
 
 .radio-button input[type="radio"].custom-radio:checked {
-	background-color: #71277A;
+	background-color: #315CA0;
 	/* Fondo morado al seleccionar */
-	border-color: #71277A;
+	border-color: #315CA0;
 	/* Asegura que el borde sea morado al seleccionarse */
 }
 
@@ -250,11 +446,10 @@ async function handleDownloadExcel() {
 }
 
 option {
-	font-size: 14px;
-	/* Cambia el tamaño de la fuente de las opciones */
-	padding: 4px;
-	/* Reduce el espacio interno */
-	line-height: 1.2;
-	/* Ajusta el espaciado entre líneas */
-}
+    font-size: 14px; /* Cambia el tamaño de la fuente de las opciones */
+    padding: 4px; /* Reduce el espacio interno */
+    line-height: 1.2; /* Ajusta el espaciado entre líneas */
+  }
+
+
 </style>
