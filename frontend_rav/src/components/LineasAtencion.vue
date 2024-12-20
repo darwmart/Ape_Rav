@@ -353,12 +353,12 @@ const handleEntityClick = (options) => {
 
 <style scoped>
 .ring {
-	box-shadow: 0 0 0 2px rgba(122, 31, 126, 0.5); /* Tamaño y color del ring */
+	box-shadow: 0 0 0 2px #315CA0; /* Tamaño y color del ring */
 	border-radius: 0.5rem; /* Ajustar el radio según el diseño */
 	transition: box-shadow 0.2s ease-in-out; /* Suavidad en la transición */
 }
 
 .ring-customPurple {
-	box-shadow: 0 0 0 2px #7a1f7e; /* Color personalizado */
+	box-shadow: 0 0 0 2px #315CA0; /* Color personalizado */
 }
 </style>
