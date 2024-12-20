@@ -1,5 +1,5 @@
 <template>
-	<div class="bg-azulBarraApe w-56 md:w-60 lg:w-72 rounded-[35px] ml-2 mt-2  h-[930px]">
+	<div class="bg-azulBarraApe w-56 md:w-60 lg:w-72 rounded-[35px] ml-2 mt-2  md:h-[930px] lg:h-[1072px]">
 		<!-- Barra lateral izquierda -->
 		<div>
 			<!-- Ícono centrado -->

@@ -1,5 +1,5 @@
 <template>
-	<div class=" bg-azulBarraApe w-64 md:w-[260px] xl:w-72 rounded-[35px] mr-2 mt-2 h-[931px] ">
+	<div class=" bg-azulBarraApe w-64 md:w-[260px] xl:w-72 rounded-[35px] mr-2 mt-2 h-[931px] lg:h-[1072px]">
 		<!-- Sidebar Derecho -->
 		<div>
 			<div class="flex flex-col items-center  ">
