@@ -237,7 +237,7 @@ td {
 }
 
 thead th {
-	background-color: #71277a;
+	background-color: #315CA0;
 	color: #fff;
 	font-weight: bold;
 	border-radius: 0.5rem 0.5rem 0rem 0rem;
