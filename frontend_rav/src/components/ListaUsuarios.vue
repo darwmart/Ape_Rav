@@ -429,7 +429,7 @@ import DeleteConfirm from '@/assets/images/delete-confirm.png';
 import imagenRegistro from '@/assets/images/imagenRegistro.jpg';
 import logoRav from '@/assets/images/LogoPageRav.svg';
 import logoSena from '@/assets/images/logosenaverde.svg';
-import logoApe from '@/assets/images/logoape.svg';
+import logoApe from '@/assets/images/LogoApe.svg';
 import Usuario from '@/assets/images/Usuario.svg';
 import FondoImagen from '@/assets/images/colombiaCollage1.webp';
 

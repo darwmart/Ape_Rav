@@ -98,7 +98,7 @@
 			  :d="departmentPaths[dep.code]"
 			  :fill="
 				selectedCountry && selectedCountry.code === dep.code
-				  ? 'purple'
+				  ? '#315CA0'
 				  : '#F2F3F3'
 			  "
 			  :stroke="

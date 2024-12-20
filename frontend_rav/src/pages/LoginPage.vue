@@ -3,7 +3,7 @@
 	<div class="min-h-screen bg-azulBarraApe text-white flex flex-col"		
 			:style="{
 			backgroundImage: backgroundUrl,
-			backgroundSize: '',
+			backgroundSize: 'cover',
 			backgroundPosition: 'center',
 		}">
 		<!-- Columna izquierda con el formulario de login -->
@@ -69,7 +69,7 @@ import { useRouter } from "vue-router";
 import { useAuthStore } from "../stores/auth";
 import axios from "axios";
 import { useToast } from "vue-toastification";
-import Logo from "@/assets/images/logoApe.svg";
+import Logo from "@/assets/images/LogoApe.svg";
 import logoSena from "@/assets/images/logosInstitucionales.svg";
 import loginFinal from '@/assets/images/bgApe.png';
 import smallScreenLogin from '@/assets/images/bgApe.png';
