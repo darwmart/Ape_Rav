@@ -117,7 +117,7 @@
 									cx="50"
 									cy="50"
 									r="40"
-									stroke="lightgray"
+									stroke="amarillo"
 									stroke-width="6"
 									fill="none" />
 								<circle
@@ -183,13 +183,13 @@ import Signointe from "@/assets/images/signointe.svg";
 
 const value = ref(67); // Valor inicial del velocímetro
 
-// Colores personalizados para los segmentos
+// Colores personalizados para los segmentos180deg, #5E91E1 0%, #315CA0 100%)
 const customSegmentColors = [
-	"#71277A", // Primer path
-	"#A032A4", // Segundo path
-	"#A032A4", // Tercer path
-	"#D041D5", // Cuarto path
-	"#E64CEB", // Quinto path
+	"#315CA0", // Primer path
+	"#315CA1", // Segundo path
+	"#608BC1", // Tercer path
+	"#CBDCEB", // Cuarto path
+	"#D9EAFD", // Quinto path
 ];
 
 // Estilo para el texto del valor actual
@@ -232,17 +232,17 @@ const getGradientStyle = (index) => {
 		case 0:
 			return {
 				background:
-					"linear-gradient(to right, rgba(242, 243, 243, 1), rgba(217, 217, 217, 1))",
+					"linear-gradient(to right, rgba(242, 243, 243, 1), rgba())",
 			};
 		case 1:
 			return {
 				background:
-					"linear-gradient(to right, rgba(253, 195, 0, 0.4), rgba(253, 195, 0, 1))",
+					"linear-gradient(to right, rgba(253, 195, 0, 0.4), rgba())",
 			};
 		case 2:
 			return {
 				background:
-					"linear-gradient(to right, rgba(207, 95, 221, 1), rgba(113, 39, 122, 1))",
+					"linear-gradient(to right, rgba(207, 95, 221, 1), rgba())",
 			};
 		default:
 			return {};
@@ -298,7 +298,7 @@ const getGradientStyle = (index) => {
 }
 
 .text-customPurple {
-	color: #71277a;
+	color: #315CA0;
 }
 
 /* Estilo para el contenedor */

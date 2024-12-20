@@ -94,7 +94,7 @@ import { useToast } from 'vue-toastification';
 import imagenRegistro from '@/assets/images/imagenRegistro.jpg';
 import logoRav from '@/assets/images/LogoPageRav.svg';
 import logoSena from '@/assets/images/logosenaverde.svg';
-import logoApe from '@/assets/images/logoape.svg';
+import logoApe from '@/assets/images/LogoApe.svg';
 
 const formData = reactive({
   name: '',

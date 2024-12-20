@@ -1,5 +1,5 @@
 <template>
-	<footer class="w-full h-16 items-center justify-between relative">
+	<footer class="w-full h-12 bg-azulHeaderFooter flex items-center justify-between px-4">
 		<!-- Ícono institucional a la izquierda con fondo azul -->
 
 		<div
@@ -7,15 +7,15 @@
 			<img
 				:src="IconoGov"
 				alt="Icono Institucional"
-				class="w-[140px] h-6 ml-2 sm-ml-0 my-2" />
+				class="w-[140px] h-6 ml-2 sm-ml-0 my-1" />
 		</div>
 
 
-		<!-- Texto centrado con fondo negro -->
+		<!-- Texto centrado con fondo negro 
 		<div
-			class="w-full left-1/2 transform text-white text-center h-6 text-sm bg-black p-1">
+			class="w-full left-1/2 transform text-white text-center h-6 text-sm bg-azulHeaderFooter p-1">
 			&copy; 2024 Fábrica de Software SENA CDTI. Todos los derechos reservados.
-		</div>
+		</div>-->
 	</footer>
 </template>
 

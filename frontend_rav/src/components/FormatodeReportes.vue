@@ -1,16 +1,14 @@
 <template>
-	<div class="min-h-screen p-4 flex flex-col -mt-20">
+	<div class="min-h-screen p-4 flex flex-col -mt-20 ">
 		<!-- Sección Superior (Título, Icono, Información del Ciudadano) -->
-		<div class="flex flex-col md:flex-row items-center justify-between p-2 rounded-lg w-full max-w-7xl mb-1">
+		<div class=" flex flex-col md:flex-row items-center justify-between p-2 rounded-lg w-full max-w-7xl mb-1">
 			<!-- Icono y Título -->
-			<div class="flex items-center mb-4 md:-0">
-				<div class="p-6 bg-customPurple rounded-full">
+			<div class="flex items-center mb-4 md:-0 ">
+				<div class="p-6 bg-customPurple rounded-full ">
 					<!-- Icono SVG -->
-					<img :src="Reportes" 
-						alt=" Icono de Reportes" 
-					    class="w-16 h-16 " />
+					<img :src="Reportes" alt=" Icono de Reportes" class="w-16 h-16 " />
 				</div>
-				<div class="ml-4 text-center md:text-left mt-14">
+				<div class="ml-4 text-center md:text-left mt-14 ">
 					<p class="text-black -mb-1 text-2xl md:text-[37px]">Generar</p>
 					<h2 class="text-customPurple text-5xl md:text-[94px] mt-0 font-bold">Reportes</h2>
 				</div>
@@ -18,7 +16,7 @@
 		</div>
 
 		<!-- Sección Central (Imagen y Formulario) -->
-		<div class="flex flex-col xl:flex-row xl:items-start  w-full max-w-9xl space-y-8 xl:space-y-9 xl:space-x-20 ">
+		<div class=" flex flex-col xl:flex-row xl:items-start  w-full max-w-9xl space-y-8 xl:space-y-9 xl:space-x-10 ">
 			<!-- Formulario a la Izquierda -->
 			<div class="flex-grow  max-w-md lg:max-w-xl  bg-white rounded-lg shadow-md w-72 p-3">
 				<center>
@@ -28,17 +26,18 @@
 				<div class="mb-4">
 					<label class="block text-gray-700 text-sm font-semibold -mb-6 "></label>
 					<br>
-					<div class="radio-button  text-base grid grid-flow-col items-center mx-9 mr-3">
-						<input type="radio" id="admin" name="role" value="Administrador" class="custom-radio"
+					<div class="radio-button text-base grid grid-flow-col items-center mx-9 mr-3">
+						<input type="radio" id="orientados" name="role" value="Orientados" class="custom-radio"
 							v-model="selectedRole" />
-						<label for="admin">Historial de Tickets</label>
-						<input type="radio" id="funcionario" name="role" value="Funcionario" class="custom-radio"
+						<label for="orientados">Exportar Orientaciones</label>
+						<input type="radio" id="inscritos" name="role" value="Inscritos" class="custom-radio"
 							v-model="selectedRole" />
-						<label for="funcionario" class="">Estadísticas del Ciudadano</label>
-						<input type="radio" id="operario" name="role" value="Operario" class="custom-radio"
+						<label for="inscritos">Exportar Inscritos</label>
+						<input type="radio" id="colocados" name="role" value="Colocados" class="custom-radio"
 							v-model="selectedRole" />
-						<label for="operario">Listar Usuarios</label>
+						<label for="colocados">Exportar Colocados</label>
 					</div>
+
 					<br>
 					<div class="space-y-2">
 						<!--<label
@@ -47,8 +46,7 @@
 				@click="selectFormat('pdf')">
 				PDF
 			  </label>-->
-						<label
-							class="hidden p-4 rounded-lg shadow-sm border cursor-pointer transition-all duration-300"
+						<label class="hidden p-4 rounded-lg shadow-sm border cursor-pointer transition-all duration-300"
 							:class="{ 'bg-customPurple text-white font-bold': selectedFormat === 'excel', 'bg-gray-100': selectedFormat !== 'excel' }"
 							@click="selectFormat('excel')">
 							EXCEL
@@ -64,7 +62,7 @@
 						<select v-model="selectedDepartamento"
 							class="block p-4 rounded-lg focus:outline-none focus:ring-2 font-bold border cursor-pointer text-negro h-12 border-none bg-grisInput"
 							id="departamento">
-							<option disabled value="" >Seleccione Departamento</option>
+							<option disabled value="">Seleccione Departamento</option>
 							<option v-for="departamento in departamentos" :key="departamento.code"
 								:value="departamento.code" class="bg-white ">
 								{{ departamento.name }}
@@ -95,8 +93,8 @@
 				</button>
 			</div>
 			<!-- Imagen a la Izquierda -->
-			<div class="flex-1 max-w-md lg:max-w-lg p-5">
-				<img :src="PersonaReportes" alt="Persona sonriendo" class="h-auto max-w-auto -mt-64" />
+			<div class="flex-1 max-w-md lg:max-w-lg p-1">
+				<img :src="PersonaReportes" alt="Persona sonriendo" class="h-[700px] w-[697px] -mt-60" />
 			</div>
 		</div>
 	</div>
@@ -109,6 +107,7 @@ import Reportes from "@/assets/images/Reportes.svg";
 import PersonaReportes from "@/assets/images/PersonaReportes.svg";
 
 const selectedRole = ref("");
+const selectedFormat = ref("excel");
 const selectedDepartamento = ref("");
 const dateRange = ref({ from: "", to: "" });
 
@@ -168,45 +167,64 @@ function validateInputs() {
 
 function getEndpoint() {
 	const endpoints = {
-		Administrador: "/api/reports/user-history",
-		Funcionario: "/api/reports/ticket-stats",
-		Operario: "/api/reports/user-list",
+		Orientados: "http://localhost:5010/api/v1/orientaciones/exportarOrientaciones",
+		Inscritos: "http://localhost:5010/api/v1/archivo/exportarInscritos",
+		Colocados: "http://localhost:5010/api/v1/archivo/exportarColocadps",
 	};
+	console.log('rol seleccionado', selectedRole.value);
+
 	return endpoints[selectedRole.value];
 }
 
 async function handleDownloadExcel() {
-	if (!validateInputs()) return;
+    if (!validateInputs()) return;
 
-	loading.value = true;
-	const endpoint = getEndpoint();
-	const payload = {
-		departamento: selectedDepartamento.value,
-		dateRange: dateRange.value,
-	};
+    loading.value = true;
+    const endpoint = getEndpoint();
+    const payload = {
+        departamento: selectedDepartamento.value,
+        dateRange: dateRange.value,
+    };
 
-	try {
-		const response = await axios.post(endpoint, payload, {
-			responseType: "blob",
-		});
+    try {
+        // Hacer la solicitud para generar el archivo
+        const response = await axios.get(endpoint, payload);
 
-		const fileURL = window.URL.createObjectURL(new Blob([response.data]));
-		const fileExtension = selectedFormat.value === "pdf" ? "pdf" : "xlsx";
-		const fileName = `${selectedRole.value.toLowerCase()}_${new Date().toISOString()}.${fileExtension}`;
+        // Verificar si la respuesta incluye la ruta local del archivo
+        const { file } = response.data;
+        console.log('nombre archivo: ', file);
 
-		const downloadLink = document.createElement("a");
-		downloadLink.href = fileURL;
-		downloadLink.setAttribute("download", fileName);
-		document.body.appendChild(downloadLink);
-		downloadLink.click();
-		downloadLink.remove();
-	} catch (error) {
-		console.error("Error al generar el reporte:", error);
-	} finally {
-		loading.value = false;
-	}
+        if (!file) {
+            throw new Error("El servidor no devolvió una ruta para descargar el archivo.");
+        }
 
+        // Leer el archivo local usando una solicitud fetch
+        const responseFile = await fetch(file);
+        if (!responseFile.ok) {
+            throw new Error("No se pudo acceder al archivo local.");
+        }
+
+        const blob = await responseFile.blob();
+
+        // Crear un enlace para descargar el archivo
+        const downloadLink = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+
+        downloadLink.href = url;
+        downloadLink.setAttribute("download", file.split("/").pop()); // Extraer el nombre del archivo
+        document.body.appendChild(downloadLink);
+        console.log('Datos  de Descarga: ', downloadLink);
+
+        downloadLink.click();
+        downloadLink.remove();
+        URL.revokeObjectURL(url);
+    } catch (error) {
+        console.error("Error al generar el reporte:", error);
+    } finally {
+        loading.value = false;
+    }
 }
+
 </script>
 
 <style scoped>
@@ -217,7 +235,7 @@ async function handleDownloadExcel() {
 	-moz-appearance: none;
 	width: 16px;
 	height: 16px;
-	border: 2px solid #71277A;
+	border: 2px solid #315CA0;
 	/* Color morado del borde */
 	border-radius: 50%;
 	margin-right: 0.5rem;
@@ -226,9 +244,9 @@ async function handleDownloadExcel() {
 }
 
 .radio-button input[type="radio"].custom-radio:checked {
-	background-color: #71277A;
+	background-color: #315CA0;
 	/* Fondo morado al seleccionar */
-	border-color: #71277A;
+	border-color: #315CA0;
 	/* Asegura que el borde sea morado al seleccionarse */
 }
 
@@ -247,10 +265,11 @@ async function handleDownloadExcel() {
 }
 
 option {
-    font-size: 14px; /* Cambia el tamaño de la fuente de las opciones */
-    padding: 4px; /* Reduce el espacio interno */
-    line-height: 1.2; /* Ajusta el espaciado entre líneas */
-  }
-
-
+	font-size: 14px;
+	/* Cambia el tamaño de la fuente de las opciones */
+	padding: 4px;
+	/* Reduce el espacio interno */
+	line-height: 1.2;
+	/* Ajusta el espaciado entre líneas */
+}
 </style>
