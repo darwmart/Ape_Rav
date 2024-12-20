@@ -3,7 +3,7 @@
 	<div class="min-h-screen bg-azulBarraApe text-white flex flex-col"		
 			:style="{
 			backgroundImage: backgroundUrl,
-			backgroundSize: '',
+			backgroundSize: 'cover',
 			backgroundPosition: 'center',
 		}">
 		<!-- Columna izquierda con el formulario de login -->
