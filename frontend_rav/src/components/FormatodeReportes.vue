@@ -235,7 +235,7 @@ async function handleDownloadExcel() {
 	-moz-appearance: none;
 	width: 16px;
 	height: 16px;
-	border: 2px solid #71277A;
+	border: 2px solid #315CA0;
 	/* Color morado del borde */
 	border-radius: 50%;
 	margin-right: 0.5rem;
@@ -244,9 +244,9 @@ async function handleDownloadExcel() {
 }
 
 .radio-button input[type="radio"].custom-radio:checked {
-	background-color: #71277A;
+	background-color: #315CA0;
 	/* Fondo morado al seleccionar */
-	border-color: #71277A;
+	border-color: #315CA0;
 	/* Asegura que el borde sea morado al seleccionarse */
 }
 
