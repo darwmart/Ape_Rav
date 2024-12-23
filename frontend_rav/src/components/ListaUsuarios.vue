@@ -1,9 +1,8 @@
 <template>
 	<div class="min-h-screen p-4 flex flex-col -mt-20">
 		<!-- Sección Superior -->
-		<div class="flex flex-col md:flex-row items-center justify-between p-2 rounded-lg w-full max-w-7xl mb-1">
-			
-			<div class="flex items-center mb-4 md:">
+		<div class="flex flex-col md:flex-row items-center justify-between p-2 rounded-lg w-full max-w-7xl mb-1">		
+			<div class="flex items-center mb-4">
 				<div class="p-6 bg-azulBarraApe rounded-full">
 					<img :src="ListaUsuarios" 
 					alt="Icono de ListaUsuarios" 
@@ -425,9 +424,8 @@ import IconoEliminar from '@/assets/images/IconoEliminar.svg';
 import IconoVisualizar from '@/assets/images/IconoVisualizar.svg';
 import RegistroUsuario from '@/assets/images/RegistroUsuario.svg';
 import DeleteSucess from '@/assets/images/delete-success.png';
-import DeleteConfirm from '@/assets/images/delete-confirm.png';
 import imagenRegistro from '@/assets/images/imagenRegistro.jpg';
-import logoRav from '@/assets/images/LogoPageRav.svg';
+import logoRav from '@/assets/images/LogoApe.png';
 import logoSena from '@/assets/images/logosenaverde.svg';
 import logoApe from '@/assets/images/LogoApe.svg';
 import Usuario from '@/assets/images/Usuario.svg';

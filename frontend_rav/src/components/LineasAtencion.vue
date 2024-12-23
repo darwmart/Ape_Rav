@@ -3,7 +3,7 @@
     <!-- Sección Superior (Título, Icono, Información del Ciudadano) -->
 		<div class="flex flex-col md:flex-row items-center justify-between p-2 rounded-lg w-full max-w-7xl mb-1">
       <!-- Icono y Título -->
-			<div class="flex items-center mb-4 md:">
+			<div class="flex items-center mb-4">
         <div class="p-6 bg-azulBarraApe rounded-full">
           <!-- Icono SVG -->
           <img :src="lineaAten" 

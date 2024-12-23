@@ -12,8 +12,13 @@
       <!-- Contenedor para el formulario y logos, centrado y con altura reducida en pantallas pequeñas -->
       <div class="flex-1 flex items-center justify-center h-full relative z-10 p-4 lg:p-0">
         <div
-          class="bg-white rounded-lg p-6 w-full max-w-sm sm:max-w-md md:max-w-lg h-auto flex flex-col items-center max-h-[90vh] space-y-4 sm:mt-10 lg:mt-0">
+          class="bg-white rounded-lg p-6 w-full max-w-md sm:max-w-lg md:max-w-xl h-auto flex flex-col items-center max-h-[75vh] space-y-4 sm:mt-20 lg:mt-0">
           
+          <!-- Botón de Volver atrás -->
+          <button @click="goBack" class="absolute top-4 left-4 text-gray-600 hover:text-gray-800">
+            ← Volver atrás
+          </button>
+
           <!-- Logo -->
           <img :src="logoRav" alt="Logo RAV" class="w-72 h-auto mb-2" />
           
@@ -38,26 +43,26 @@
           <form @submit.prevent="submitForm" class="space-y-3 w-full">
             <div>
               <input v-model="formData.name" type="text" placeholder="Nombre"
-                class="w-full px-3 h-11 py-2 bg-grisInput border-none font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-azulBarraApe"
+                class="w-full px-3 h-11 py-2 bg-grisInput border-none font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-customPurple"
                 required />
             </div>
             <div>
               <input v-model="formData.email" type="email" placeholder="Correo SENA"
-                class="w-full px-3 h-11 py-2 bg-grisInput border-none font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-azulBarraApe"
+                class="w-full px-3 h-11 py-2 bg-grisInput border-none font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-customPurple"
                 required />
             </div>
             <div>
               <input v-model="formData.password" type="password" placeholder="Crear contraseña"
-                class="w-full px-3 h-11 py-2 bg-grisInput border-none font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-azulBarraApe"
+                class="w-full px-3 h-11 py-2 bg-grisInput border-none font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-customPurple"
                 required />
             </div>
             <div>
               <input v-model="formData.confirmPassword" type="password" placeholder="Confirmar contraseña"
-                class="w-full px-3 h-11 py-2 bg-grisInput border-none font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-azulBarraApe"
+                class="w-full px-3 h-11 py-2 bg-grisInput border-none font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-customPurple"
                 required />
             </div>
             <!-- Botón de Registrarse -->
-            <button type="submit" class="w-full bg-azulBarraApe text-amarillo font-bold py-2 text-lg rounded-lg cursor-pointer transition duration-200">
+            <button type="submit" class="w-full bg-customPurple text-amarillo font-bold py-2 text-lg rounded-lg cursor-pointer transition duration-200">
               Registrarse
             </button>
           </form>
@@ -94,7 +99,7 @@ import { useToast } from 'vue-toastification';
 import imagenRegistro from '@/assets/images/imagenRegistro.jpg';
 import logoRav from '@/assets/images/LogoPageRav.svg';
 import logoSena from '@/assets/images/logosenaverde.svg';
-import logoApe from '@/assets/images/LogoApe.svg';
+import logoApe from '@/assets/images/logoape.svg';
 
 const formData = reactive({
   name: '',
@@ -136,9 +141,14 @@ async function submitForm() {
 function goToLogin() {
   router.push('/login');
 }
+
+// Nueva función para volver atrás
+function goBack() {
+  router.go(-1); // Va atrás en el historial de navegación
+}
 </script>
 
-<style>
+<style scoped>
 /* Estilo para radio buttons personalizados */
 .radio-button input[type="radio"].custom-radio {
   appearance: none;
@@ -146,7 +156,7 @@ function goToLogin() {
   -moz-appearance: none;
   width: 16px;
   height: 16px;
-  border: 2px solid #71277A; /* Color morado del borde */
+  border: 2px solid #315CA0; /* Color morado del borde */
   border-radius: 50%;
   margin-right: 0.5rem;
   outline: none;
@@ -154,8 +164,8 @@ function goToLogin() {
 }
 
 .radio-button input[type="radio"].custom-radio:checked {
-  background-color: #71277A; /* Fondo morado al seleccionar */
-  border-color: #71277A; /* Asegura que el borde sea morado al seleccionarse */
+  background-color: #315CA0; /* Fondo morado al seleccionar */
+  border-color: #315CA0; /* Asegura que el borde sea morado al seleccionarse */
 }
 
 .radio-button label {

@@ -336,7 +336,7 @@ onMounted(async () => {
 <style scoped>
 /* Estilos adicionales */
 .bg-customPurple {
-  background-color: #71277a; /* Color púrpura personalizado */
+  background-color: #315CA0; /* Color púrpura personalizado */
 }
 
 .bg-customYellow {

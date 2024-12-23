@@ -1,24 +1,23 @@
 <template>
-	<div class="bg-white p-6 border-none rounded-lg h-auto">
+	<div class="min-h-screen p-4 flex flex-col  -mt-20">
 		<!-- Sección superior: Título e Icono -->
-		<div class="flex flex-col lg:flex-row items-center justify-between mb-6">
-			<div class="flex items-center">
-				<div class="p-4 bg-customPurple rounded-full">
+		<div class="flex flex-col md:flex-row items-center justify-between p-2 rounded-lg w-full max-w-7xl mb-1">
+			<div class="flex items-center mb-4">
+				<div class="p-6 bg-azulBarraApe rounded-full">
 					<!-- Icono SVG -->
 					<img
 						:src="Ciudadano"
 						alt="Icono de Ciudadano"
-						width="50"
-						height="50" />
+						class="w-16 h-16 " />
 				</div>
-				<div class="ml-4 text-center lg:text-left">
-					<p class="text-black mb-0 text-2xl">Perfil del</p>
-					<h2 class="text-customPurple text-5xl mt-0 font-bold">Ciudadano</h2>
+				<div class="ml-4 text-center md:text-left mt-14">
+					<p class="text-black -mb-1 text-2xl md:text-[37px]">Perfil del</p>
+					<h2 class="text-customPurple text-5xl md:text-[94px] mt-0 font-bold">Ciudadano</h2>
 				</div>
 			</div>
-			<!-- Botones de Acción -->
-			<div class="flex flex-wrap gap-4 mt-4 justify-center">
-				<router-link
+			<!-- Botones de Acción 
+			<div class="flex flex-wrap gap-4 mt-4 justify-center">-->
+				<!--<router-link
 					:to="{ name: 'RutaAtencionPage' }"
 					class="cursor-pointer bg-customPurple border-none text-white py-4 px-6 rounded-lg flex flex-col items-center justify-center">
 					<img
@@ -26,16 +25,16 @@
 						alt="Icono de Atención"
 						class="w-10 h-10 mb-2" />
 					<span class="text-sm">Ver Ruta de Atención</span>
-				</router-link>
+				</router-link>-->
 
-				<router-link
+				<!--<router-link
 					:to="{ name: 'LineaTiempoNuevaPage' }"
 					class="bg-customPurple border-none text-white py-4 px-6 rounded-lg flex flex-col items-center justify-center">
 					<img :src="VerLine" alt="Icono de Ver Línea" class="w-10 h-10 mb-2" />
 					<span class="text-sm">Ver Línea de Tiempo</span>
-				</router-link>
+				</router-link>-->
 
-				<router-link
+				<!--<router-link
 					:to="{ name: 'RegistroActividadPage' }"
 					class="bg-customPurple border-none text-white py-4 px-6 rounded-lg flex flex-col items-center justify-center">
 					<img
@@ -44,11 +43,11 @@
 						class="w-10 h-10 mb-2" />
 					<span class="text-sm">Registrar de Actividad</span>
 				</router-link>
-			</div>
+			</div>-->
 		</div>
 
 		<!-- Información personal del ciudadano -->
-		<div class="flex flex-col lg:flex-row bg-white p-4 rounded-lg gap-8 mb-8">
+		<div class="flex flex-col lg:flex-row bg-white p-4 rounded-lg gap-8 mb-8 shadow-md ">
 			<!-- Primera columna -->
 			<div class="flex-1">
 				<div class="flex items-center">
@@ -122,14 +121,14 @@
 				</div>
 			</div>
 		</div>
-		<!-- Historial del Ciudadano -->
-		<div class="text-white rounded-lg shadow-md">
-			<!-- Título del historial -->
+		<!-- Historial del Ciudadano 
+		<div class="text-white rounded-lg shadow-md">-->
+			<!-- Título del historial 
 			<div class="flex items-center bg-customPurple p-px">
 				<img :src="Historial" alt="Icono de Historial" class="w-8 h-8 mr-2" />
 				<h3 class="text-xl font-bold">HISTORIAL DEL CIUDADANO</h3>
-			</div>
-			<!-- Contenedor de la tabla con scroll horizontal -->
+			</div>-->
+			<!-- Contenedor de la tabla con scroll horizontal 
 			<div class="overflow-x-auto">
 				<table class="min-w-full bg-white text-gray-900">
 					<thead>
@@ -156,7 +155,7 @@
 					</tbody>
 				</table>
 			</div>
-		</div>
+		</div>-->
 	</div>
 </template>
 
