@@ -56,33 +56,28 @@
 						>TIPO DE DOCUMENTO:</label
 					>
 					<p class="text-black w-2/3">
-						{{ userInfo.tipo_documento || "NO REGISTRA" }}
+						{{ data.tipo_identificacion || "NO REGISTRA" }}
 					</p>
 				</div>
 
 				<div class="flex items-center">
 					<label class="text-black font-semibold w-1/3">NOMBRE COMPLETO:</label>
 					<p class="text-black w-2/3">
-						{{ userInfo.nombrecompleto || "NO REGISTRA" }}
+						{{ data.identificacion || "NO REGISTRA" }}
 					</p>
 				</div>
 
 				<div class="flex items-center">
 					<label class="text-black font-semibold w-1/3">CIUDAD:</label>
-					<p class="text-black w-2/3">{{ userInfo.ciudad || "NO REGISTRA" }}</p>
+					<p class="text-black w-2/3">{{ data.etnia || "NO REGISTRA" }}</p>
 				</div>
 
 				<div class="flex items-center">
 					<label class="text-black font-semibold w-1/3">GENERO:</label>
-					<p class="text-black w-2/3">{{ userInfo.genero || "NO REGISTRA" }}</p>
+					<p class="text-black w-2/3">{{ data.etnia || "NO REGISTRA" }}</p>
 				</div>
 
-				<div class="flex items-center">
-					<label class="text-black font-semibold w-1/3">ID HOGAR:</label>
-					<p class="text-black w-2/3">
-						{{ userInfo.id_hogar || "NO REGISTRA" }}
-					</p>
-				</div>
+				
 			</div>
 
 			<!-- Segunda columna -->
@@ -92,7 +87,7 @@
 						>NÚMERO DE DOCUMENTO:</label
 					>
 					<p class="text-black w-2/3">
-						{{ userInfo.documento || "NO REGISTRA" }}
+						{{ data.identificacion || "NO REGISTRA" }}
 					</p>
 				</div>
 
@@ -101,20 +96,20 @@
 						>PROCEDENCIA ÉTNICA:</label
 					>
 					<p class="text-black w-2/3">
-						{{ userInfo.pertenenciaetnica || "NO REGISTRA" }}
+						{{ data.etnia || "NO REGISTRA" }}
 					</p>
 				</div>
 
 				<div class="flex items-center">
 					<label class="text-black font-semibold w-1/3">ESTADO VICTIMA:</label>
 					<p class="text-black w-2/3">
-						{{ userInfo.estadovictima || "NO REGISTRA" }}
+						{{ data.etnia || "NO REGISTRA" }}
 					</p>
 				</div>
 
 				<div class="flex items-center">
-					<label class="text-black font-semibold w-1/3">HECHO:</label>
-					<p class="text-black w-2/3">{{ userInfo.hecho || "NO REGISTRA" }}</p>
+					<label class="text-black font-semibold w-1/3">HECHOS:</label>
+					<p class="text-black w-2/3" v-for="(hecho, index) in data.caracterizacion" :key="index">{{ hecho || "NO REGISTRA" }}</p>
 				</div>
 
 				<div class="flex items-center">
@@ -122,7 +117,7 @@
 						>NÚMERO DE CONTACTO:</label
 					>
 					<p class="text-black w-2/3">
-						{{ userInfo.numtelefonocelular || "NO REGISTRA" }}
+						{{ data.etnia || "NO REGISTRA" }}
 					</p>
 				</div>
 			</div>
@@ -167,7 +162,8 @@
 
 <script setup>
 // Simulación de datos desde una API
-import { ref, onMounted } from "vue";
+import { ref, unref, onMounted } from "vue";
+import { defineProps } from "vue";
 import RutaAtencion from "@/assets/images/ruta.svg";
 import Ciudadano from "@/assets/images/Usuario.svg";
 import VerLine from "@/assets/images/VerLine.svg";
@@ -178,20 +174,32 @@ import { useEventStore } from "@/stores/storedataOff.js"; // Cambiar según tu e
 
 
 const eventStore = useEventStore();
-const userInfo = ref({})
-const fetchData = ref([])
+const userInfo = ref({});
+const fetchData = ref([]);
+const data = ref({});
 
 const fetchOptions = {
-    url: "http://localhost:8083/api/v1/programa",
+    url: "http://localhost:5010/api/v1/ciudadano/ValidarVictima",
     options: {
-        method: "GET",
+        method: "POST",
         headers: {
             "Accept": "application/json",
         },
     }
 }
+// Define los props que espera el componente
+defineProps({
+	userInfo: {
+		type: Object,
+		required: true,
+	},
+});
 
 const getFetchData = async(fetchOptions)=>{
+	const userInfoData = unref(userInfo); // Extraemos userInfo
+    data.value = userInfoData?.data || {};
+	console.log('dar se la come dobalda; ',data.value);
+	
 	const{url,options} = fetchOptions
 	let newUrl = url+`/${userInfo.value.documento}`
 	console.log(newUrl);
