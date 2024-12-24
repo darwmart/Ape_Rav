@@ -215,6 +215,7 @@ const fetchService = new FetchService();
 const modules = ref([]);
 const roles = ref([]);
 const authstore = useAuthStore();
+const host = import.meta.env.VITE_HOST;
 let selectedPermissions = {};
 
 const selectCheckBoxAndModule = (event, permission_id, module_id) => {
@@ -278,7 +279,7 @@ const handleSubmit = async () => {
     }),
   };
 
-  await fetchService.post("http://localhost:8080/roles/assign-permission", {
+  await fetchService.post(`${host}:8080/roles/assign-permission`, {
     fetchOptions: {
       headers: {
         "Accept": "application/json",
@@ -296,7 +297,7 @@ const handleSubmit = async () => {
 };
 
 const getData = async () => {
-  await fetchService.get("http://localhost:8080/modules", {
+  await fetchService.get(`${host}:8080/modules`, {
     fetchOptions: {
       headers: {
         Accept: "application/json",
@@ -310,7 +311,7 @@ const getData = async () => {
     error: (response) => console.log(response),
   });
 
-  await fetchService.get("http://localhost:8080/roles", {
+  await fetchService.get(`${host}:8080/roles`, {
     fetchOptions: {
       headers: {
         Accept: "application/json",

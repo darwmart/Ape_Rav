@@ -12,7 +12,7 @@ import axios from 'axios';
 
 // Registrar los módulos necesarios de Chart.js
 Chart.register(...registerables);
-
+const host = import.meta.env.VITE_HOST;
 const chartRef = ref(null);
 
 const rawData = reactive({
@@ -109,7 +109,7 @@ const chartOptions = reactive({
 
 const fetchMensuales = async () => {
 	try {
-		const responseMes = await axios.get('http://localhost:5010/api/v1/metas/ejecucionMensual');
+		const responseMes = await axios.get(`${host}:5010/api/v1/metas/ejecucionMensual`);
 		const dataMes = responseMes.data;
 
 		const monthIndex = (yearMonth) => parseInt(yearMonth.split('-')[1], 10) - 1;

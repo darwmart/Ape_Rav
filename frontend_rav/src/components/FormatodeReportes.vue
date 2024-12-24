@@ -1,5 +1,5 @@
 <template>
-	<div class="min-h-screen p-4 flex flex-col -mt-20 ">
+	<div class="flex flex-col md:min-h-screen md:p-4  md:-mt-20 ">
 		<!-- Sección Superior (Título, Icono, Información del Ciudadano) -->
 		<div class=" flex flex-col md:flex-row items-center justify-between p-2 rounded-lg w-full max-w-7xl mb-1">
 			<!-- Icono y Título -->
@@ -14,6 +14,10 @@
 				</div>
 			</div>
 		</div>
+		<!-- Imagen Izquierda -->
+		<div class="flex-1 max-w-md lg:max-w-lg p-1">
+				<img :src="PersonaReportes" alt="Persona sonriendo" class="h-[356px] w-[332px] md:hidden" />
+			</div>
 
 		<!-- Sección Central (Imagen y Formulario) -->
 		<div class=" flex flex-col xl:flex-row xl:items-start  w-full max-w-9xl space-y-8 xl:space-y-9 xl:space-x-10 ">
@@ -40,12 +44,7 @@
 
 					<br>
 					<div class="space-y-2">
-						<!--<label
-				class="block p-4 rounded-lg shadow-sm border cursor-pointer transition-all duration-300"
-				:class="{'bg-customPurple text-white font-bold': selectedFormat === 'pdf', 'bg-gray-100': selectedFormat !== 'pdf'}"
-				@click="selectFormat('pdf')">
-				PDF
-			  </label>-->
+					
 						<label class="hidden p-4 rounded-lg shadow-sm border cursor-pointer transition-all duration-300"
 							:class="{ 'bg-customPurple text-white font-bold': selectedFormat === 'excel', 'bg-gray-100': selectedFormat !== 'excel' }"
 							@click="selectFormat('excel')">
@@ -93,8 +92,9 @@
 				</button>
 			</div>
 			<!-- Imagen a la Izquierda -->
-			<div class="flex-1 max-w-md lg:max-w-lg p-1">
-				<img :src="PersonaReportes" alt="Persona sonriendo" class="h-[700px] w-[697px] -mt-60" />
+			<div class="md:flex-1 md:max-w-md md::max-w-lg md:p-1 hidden md:block">
+				<img :src="PersonaReportes" alt="Persona sonriendo" 
+				class="md:h-[700px] md:w-[697px] md:-mt-60 " />
 			</div>
 		</div>
 	</div>
@@ -110,7 +110,7 @@ const selectedRole = ref("");
 const selectedFormat = ref("excel");
 const selectedDepartamento = ref("");
 const dateRange = ref({ from: "", to: "" });
-
+const host = import.meta.env.VITE_HOST;
 
 const departamentos = ref([
 	{ name: "Amazonas", code: "91" },
@@ -167,9 +167,9 @@ function validateInputs() {
 
 function getEndpoint() {
 	const endpoints = {
-		Orientados: "http://localhost:5010/api/v1/orientaciones/exportarOrientaciones",
-		Inscritos: "http://localhost:5010/api/v1/archivo/exportarInscritos",
-		Colocados: "http://localhost:5010/api/v1/archivo/exportarColocadps",
+		Orientados: `${host}:5010/api/v1/orientaciones/exportarOrientaciones`,
+		Inscritos: `${host}5010/api/v1/archivo/exportarInscritos`,
+		Colocados: `${host}5010/api/v1/archivo/exportarColocadps`,
 	};
 	console.log('rol seleccionado', selectedRole.value);
 

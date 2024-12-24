@@ -164,11 +164,11 @@ const keyWords = ref("");
 let user_id;
 const documentNumber = ref("");
 const personFullName = ref("");
-
+const host = import.meta.env.VITE_HOST;
 
 
 const fetchOptions = {
-	url: "http://localhost:8082/api/v1/victimas/ticket",
+	url: `${host}:8082/api/v1/victimas/ticket`,
 	options: {
 		method: "POST",
 		headers: {

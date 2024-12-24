@@ -127,7 +127,7 @@
   const selectedCountry = ref("");
   let department = ref([]);
   const fetchService = new FetchService();
-  const host = "http://localhost";
+  const host = import.meta.env.VITE_HOST;
   
   
   

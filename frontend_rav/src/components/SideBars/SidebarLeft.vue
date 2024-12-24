@@ -1,5 +1,5 @@
 <template>
-	<div class="bg-azulBarraApe w-56 md:w-60 lg:w-72 rounded-[35px] ml-2 mt-2  lg:h-[930px] ">
+	<div class="bg-azulBarraApe w-56 md:w-60 lg:w-72 rounded-[35px] ml-2 mt-2  md:h-[956px] ">
 		<!-- Barra lateral izquierda -->
 		<div>
 			<!-- Ícono centrado -->
@@ -127,14 +127,14 @@
 				<div class="hidden lg:block p-4 border text:sm flex-shrink-0">
 					<div class="flex items-center justify-center">
 						<Avatar
-							:src="user.avatar"
+							:src="IconoLogout"
 							alt="User Avatar"
 							class="w-12 h-12 rounded-full" />
 						<div class="text-xs text-center ml-3">
 							<p class="font-bold text-lg">{{ user.name }}</p>
 						</div>
 					</div>
-					<p class="text-gray-700 text-sm">{{ user.email }}</p>
+					<p class="text-gray-700 text-sm mx-9">{{ user.email }}</p>
 					<!-- Botón de Cerrar Sesión -->
 					<div class="mt-4 text-center">
 						<LogoutButton
@@ -161,11 +161,11 @@ const router = useRouter();
 const route = useRoute();
 const toast = useToast();
 const authStore = useAuthStore();
-
+const host = import.meta.env.VITE_HOST;
 const user = ref({
-	name: "Amy Elsner",
-	email: "amy.elsner@example.com",
-	avatar: "https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png",
+	name: "super admin",
+	email: "superadmin@example.com",
+	icon: "IconoLogout",
 });
 
 const menuItems = ref([
@@ -377,7 +377,7 @@ const logout = async () => {
 			},
 		};
 		// Hacer la petición de logout
-		await axios.post("http://localhost:8080/api/auth/logout", {}, config);
+		await axios.post(`${host}:8080/api/auth/logout`, {}, config);
 		// Limpiar el token
 		localStorage.removeItem("token");
 		hasShownNoSessionToast.value = false; // Resetear el flag después de cerrar sesión

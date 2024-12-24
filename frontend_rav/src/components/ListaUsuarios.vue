@@ -22,27 +22,27 @@
 		</div>
 
 		<!-- Tabla de usuarios -->
-		<div class="overflow-x-auto w-full max-w-7xl bg-white shadow-lg rounded-lg">
+		<div class="overflow-x-auto w-full max-w-7xl bg-white shadow-xl rounded-3xl">
 			<!-- Tabla -->
-			<table class="min-w-full table-auto">
+			<table class="min-w-full table-auto p-3 ">
 				<!-- Cabecera de la tabla -->
 				<thead>
-					<tr class="bg-customPurple text-white font-bold text-center">
-						<th class="p-4 border-b border-gray-300">NOMBRE</th>
-						<th class="p-4 border-b border-gray-300">ROL</th>
-						<th class="p-4 border-b border-gray-300">CORREO</th>
-						<th class="p-4 border-b border-gray-300">DOCUMENTO</th>
-						<th class="p-4 border-b border-gray-300">PERMISOS</th>
+					<tr class="bg-customPurple text-white font-bold text-center rounded-full">
+						<th class="rounded-full p-4 border-b border-gray-300">NOMBRE</th>
+						<th class="rounded-full p-4 border-b border-gray-300">ROL</th>
+						<th class="rounded-full p-4 border-b border-gray-300">CORREO</th>
+						<th class="rounded-full p-4 border-b border-gray-300">DOCUMENTO</th>
+						<th class="rounded-full p-4 border-b border-gray-300">PERMISOS</th>
 					</tr>
 				</thead>
 				<!-- Cuerpo de la tabla -->
 				<tbody>
 					<tr v-for="(user, index) in users" :key="index" class="text-center border-t border-gray-200">
-						<td class="p-4 border-b border-gray-300">{{ user.nombre }}</td>
-						<td class="p-4 border-b border-gray-300">{{ user.rol }}</td>
-						<td class="p-4 border-b border-gray-300">{{ user.correo }}</td>
-						<td class="p-4 border-b border-gray-300">{{ user.numero_documento }}</td>
-						<td class="p-4 border-b border-gray-300 flex justify-center items-center">
+						<td class="rounded-full p-4 border-b border-gray-300">{{ user.nombre }}</td>
+						<td class="rounded-full p-4 border-b border-gray-300">{{ user.rol }}</td>
+						<td class="rounded-full p-4 border-b border-gray-300">{{ user.correo }}</td>
+						<td class="rounded-full p-4 border-b border-gray-300">{{ user.numero_documento }}</td>
+						<td class="rounded-full p-4 border-b border-gray-300 flex justify-center items-center">
 							<!-- Botón Ver -->
 							<button @click="viewUser(user)"
 								class="bg-white cursor-pointer border-none shadow-md p-2 rounded-full">
@@ -424,6 +424,7 @@ import IconoEliminar from '@/assets/images/IconoEliminar.svg';
 import IconoVisualizar from '@/assets/images/IconoVisualizar.svg';
 import RegistroUsuario from '@/assets/images/RegistroUsuario.svg';
 import DeleteSucess from '@/assets/images/delete-success.png';
+import DeleteConfirm from '@/assets/images/delete-confirm.png';
 import imagenRegistro from '@/assets/images/imagenRegistro.jpg';
 import logoRav from '@/assets/images/LogoApe.png';
 import logoSena from '@/assets/images/logosenaverde.svg';

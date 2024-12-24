@@ -88,6 +88,7 @@ const isLoading = ref(false);
 const backgroundUrl = ref(""); // Variable para almacenar la URL de fondo
 const router = useRouter();
 const toast = useToast();
+const host = import.meta.env.VITE_HOST;
 
 onMounted(() => {
 	// Detecta el ancho de la pantalla después de que el componente ha sido montado
@@ -107,7 +108,7 @@ async function submit() {
 	isLoading.value = true;
 	try {
 		const response = await axios.post(
-			"http://localhost:8080/login",
+			`${host}:8080/login`,
 			form
 		);
 		console.log(response.data);

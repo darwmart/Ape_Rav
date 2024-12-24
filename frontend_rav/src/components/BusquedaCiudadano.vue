@@ -1,24 +1,26 @@
 <template>
-    <div class="grid grid-cols-2">
-        <div class="flex items-center justify-center  ">
-            <img src="@/assets/images/CiudadanoRutaAtencion.svg" alt="Persona sonriendo"
-                class="rounded-lg object-cover h-[782px] md:mt-12" />
+    <div class="md:grid md:grid-cols-2 grid grid-cols-1 relative">
+        <!-- Contenedor del Título -->
+        <div class="absolute -mt-8 left-0 w-full p-1   md:hidden">
+            <p class="text-xl font-medium text-center">
+                Aquí podrás visualizar información acerca de la
+            </p>
+            <h1 class="text-3xl font-bold text-azulBarraApe text-center">
+                Ruta de Atención al Ciudadano
+            </h1>
         </div>
-    <div class="block lg:flex items-center justify-center p-6 h-full">
-        <div class="lg:pl- lg:pr-10">
-            <div class="-mb-4 w-full h-">
-                <p class="lg:text-4xl font-medium -mb-10">
-                    Aquí podrás visualizar información acerca de la
-                </p>
-                <h1 class="tracking-wide text-7xl font-bold text-azulBarraApe">
-                    Ruta de Atención al Ciudadano.
-                </h1>
-            </div>
-            <div class="w-full mb-30 bg-white p-10 rounded-2xl shadow-lg">
-                <div class="flex flex-col items-center">
-                    <!-- Nuevo Select para Tipo de Identificación -->
+
+        <!-- Contenedor de la Imagen -->
+        <div class="md:flex md:items-center md:justify-center relative md:mt-0 mt-36 -mb-14">
+            <img src="@/assets/images/CiudadanoRutaAtencion.svg" alt="Persona sonriendo"
+                class="md:rounded-lg md:object-cover md:h-[782px] md:mt-12 h-[472px] " />
+            
+            <!-- Formulario encima de la imagen en pantallas pequeñas -->
+            <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center md:hidden">
+                <div class="bg-white bg-opacity-80 p-6 rounded-lg shadow-lg  mt-44">
+                    <!-- Select para Tipo de Identificación -->
                     <select v-model="selectedTipoIdentificacion"
-                        class="w-full p-4 mb-3 border text-black border-none rounded-lg bg-grisFondo">
+                        class="w-full h-4 p-4 mb-2 border text-black rounded-lg bg-grisFondo">
                         <option disabled value="">Seleccione tipo de identificación</option>
                         <option value="CC">Cédula de Ciudadanía</option>
                         <option value="TI">Tarjeta de Identidad</option>
@@ -27,13 +29,43 @@
                     <!-- Input para el Número de Documento -->
                     <input v-model="searchCedula" @keydown.enter="searchUser" type="text"
                         placeholder="Ingrese número de documento"
-                        class="w-full p-4 border text-black border-none rounded-lg bg-grisFondo" />
+                        class="w-full h-4 p-4 border text-black rounded-lg bg-grisFondo mb-3" />
+                    
                     <Button type="button" label="Buscar" icon="pi pi-search" :loading="loading"
-                        class="mt-3 w-full hover:bg-azulBarraApe !border-none !bg-azulBarraApe !text-yellow-400"
+                        class="w-full hover:bg-azulBarraApe !border-none !bg-azulBarraApe !text-yellow-400"
                         @click="searchUser" />
                 </div>
             </div>
         </div>
+
+        <!-- Contenedor del Texto y Formulario en Pantallas Grandes -->
+        <div class="md:flex md:items-center md:justify-center md:p-6 md:h-full hidden ">
+            <div class="lg:pl- lg:pr-10">
+                <div class="-mb-4 w-full h-">
+                    <p class="md:text-4xl md:font-medium md:-mb-10 text-xl">
+                        Aquí podrás visualizar información acerca de la
+                    </p>
+                    <h1 class="md:tracking-wide md:text-7xl font-bold text-azulBarraApe">
+                        Ruta de Atención al Ciudadano.
+                    </h1>
+                </div>
+                <div class="w-full mb-30 bg-white p-10 rounded-2xl shadow-lg">
+                    <div class="flex flex-col items-center">
+                        <select v-model="selectedTipoIdentificacion"
+                            class="w-full p-4 mb-3 border text-black rounded-lg bg-grisFondo">
+                            <option disabled value="">Seleccione tipo de identificación</option>
+                            <option value="CC">Cédula de Ciudadanía</option>
+                            <option value="TI">Tarjeta de Identidad</option>
+                        </select>
+                        <input v-model="searchCedula" @keydown.enter="searchUser" type="text"
+                            placeholder="Ingrese número de documento"
+                            class="w-full p-4 border text-black rounded-lg bg-grisFondo mb-3" />
+                        <Button type="button" label="Buscar" icon="pi pi-search" :loading="loading"
+                            class="w-full hover:bg-azulBarraApe !border-none !bg-azulBarraApe !text-yellow-400"
+                            @click="searchUser" />
+                    </div>
+                </div>
+            </div>
         <Dialog v-model:visible="noResultsModal" modal header="Búsqueda Fallida" :style="{ width: '30rem' }">
             <p class="m-0 text-azulBarraApe">
                 {{ modalMessage }}
@@ -64,6 +96,7 @@ const modalMessage = ref("");
 const loading = ref(false);
 const router = useRouter();
 const eventStore = useEventStore();
+const host = import.meta.env.VITE_HOST;
 
 async function searchByCedula(tipoId, cedula) {
     const body = {
@@ -72,7 +105,7 @@ async function searchByCedula(tipoId, cedula) {
     };
     try {
         const response = await axios.post(
-            'http://localhost:5010/api/v1/ciudadano/ValidarVictima',
+            `${host}:5010/api/v1/ciudadano/ValidarVictima`,
             body,
             {
                 headers: {

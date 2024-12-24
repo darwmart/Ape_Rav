@@ -135,11 +135,12 @@ const imagePaths = ref([
 	},
 
 ]);
+const host = import.meta.env.VITE_HOST;
 
 // Función para obtener los totales desde la API
 const fetchTotales = async () => {
   try {
-    const response = await axios.get('http://localhost:5010/api/v1/metas/ejecuciónAnual');
+    const response = await axios.get(`${host}:5010/api/v1/metas/ejecuciónAnual`);
     const data = response.data;
 
     // Actualizamos los counts en la lista imagePaths

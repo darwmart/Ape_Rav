@@ -176,9 +176,9 @@ const eventStore = useEventStore();
 const userInfo = ref({});
 const fetchData = ref([]);
 const data = ref({});
-
+const host = import.meta.env.VITE_HOST;
 const fetchOptions = {
-    url: "http://localhost:5010/api/v1/ciudadano/ValidarVictima",
+    url: `${host}:5010/api/v1/ciudadano/ValidarVictima`,
     options: {
         method: "POST",
         headers: {

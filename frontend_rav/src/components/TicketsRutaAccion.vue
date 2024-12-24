@@ -306,15 +306,15 @@ const groupedEvents = ref({
 
 
 
-const fetchOptions = {
-    url: "http://localhost:8082/api/v1/victimas/ticket",
+/*const fetchOptions = {
+    url: `${host}:8082/api/v1/victimas/ticket`,
     options: {
         method: "GET",
         headers: {
             "Accept": "application/json",
         },
     }
-}
+}*/
 
 const getFetchData = async(fetchOptions)=>{
 	const{url,options} = fetchOptions

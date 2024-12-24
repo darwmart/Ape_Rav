@@ -10,10 +10,12 @@ import { Chart, registerables } from "chart.js";
 import { reactive, ref, computed, onMounted } from "vue";
 import axios from "axios";
 
+
 // Registrar los módulos necesarios de Chart.js
 Chart.register(...registerables);
 
 const chartRef = ref(null);
+const host = import.meta.env.VITE_HOST;
 
 // Datos reactivos para manejar los valores crudos
 const rawData = reactive({
@@ -42,7 +44,7 @@ const chartOptions = reactive({
 // Función para obtener los datos desde la API
 const fetchEtnias = async () => {
 	try {
-		const response = await axios.get("http://localhost:5010/api/v1/metas/ejecucionEtnia");
+		const response = await axios.get(`${host}:5010/api/v1/metas/ejecucionEtnia`);
 		const dataEtnia = response.data;
 
 		// Extraer etiquetas y valores

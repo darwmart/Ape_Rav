@@ -194,15 +194,15 @@ const createPartsTxt = (file, chunkSize = 250 * 1024 * 1024) => {
 		formData.append("file", fileBlob, fileName);
 		formData.append("sizeMainFile", file.size);
 
-		let fetchOptions = {
-			url: "http://localhost:8081/api/upload",
+		/*let fetchOptions = {
+			url: `${host}:8081/api/upload`,
 
 			options: {
 				method: "POST",
 				headers: { Accept: "application/json" },
 				body: formData,
 			},
-		};
+		};*/
 
 		sendFile(fetchOptions);
 
@@ -277,7 +277,7 @@ const uploadFile = async () => {
 	//     title: "Subiendo archivo...",
 	//     message: `Subiendo ${fileName.value}`,
 	//     progress: uploadProgress.value,
-	//     redirectUrl: "http://localhost:5173/subirfichero"
+	//     redirectUrl: "http://`${host}:5173/subirfichero"
 	//   }
 	// }));
 

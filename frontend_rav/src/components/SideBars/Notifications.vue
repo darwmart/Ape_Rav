@@ -1,5 +1,5 @@
 <template>
-	<div class=" bg-azulBarraApe w-64 md:w-[260px] xl:w-72 rounded-[35px] mr-2 mt-2 h-[931px] ">
+	<div class=" bg-azulBarraApe  md:w-[260px] md:xl:w-72 md:rounded-[35px] mr-2 md:mt-2 md:h-[955px]">
 		<!-- Sidebar Derecho -->
 		<div>
 			<div class="flex flex-col items-center  ">
@@ -24,7 +24,7 @@
 					</div>
 				</div>
 				<!--linea divisora text actividad-->
-				<div class="bg-white w-[260px] h-0.5 -mt-4 "></div>
+				<div class="bg-white md:w-[260px] md:h-0.5 -mt-4 "></div>
 				<div class="grid grid-cols-1 bg-azulBarraApe  items-center gap-5 p-3 ">
 					<!-- Agrega un gap para separación -->
 					<div v-for="(goal, index) in goals" :key="index"
@@ -33,37 +33,39 @@
 
 
 						<!-- Texto a la derecha del indicador -->
-						<div class="grid grid-cols-1 justify-center items-start w-full h-56  mx-4 mt-5 b">
-							<div :class="index === 2 ? 'text-white' : 'text-white'" class="text-[14px] font-base -mb-2 ">
+						<div class="grid grid-cols-1 justify-center items-start w-full md:h-56  md:mx-4 md:mt-5 ">
+							<div :class="index === 2 ? 'text-white' : 'text-white'"
+								class="text-[14px] font-base -mb-2 ">
 								{{ goal.label }}
 							</div>
-							<div
-								:class="index === 2 ? 'text-white text-2xl font-bold' : 'text-white text-[24px] font-bold'"class="-mb-4">
+							<div :class="index === 2 ? 'text-white text-2xl font-bold' : 'text-white text-[24px] font-bold'"
+								class="-mb-4">
 								{{ goal.meta || 0 }}
 							</div>
 							<!--linea divisora texto meta -->
 							<div class="bg-amarillo w-[100px] h-[1px]  "></div>
 
-							<div :class="index === 2 ? 'text-white' : 'text-white'" class="-mt-3 text-[14px] font-base ">
+							<div :class="index === 2 ? 'text-white' : 'text-white'"
+								class="-mt-3 text-[14px] font-base ">
 								Estado Actual
 							</div>
-							<div
-								:class="index === 2 ? 'text-white text-2xl font-bold' : 'text-white text-[24px] font-bold'"class="-mt-4 ">
+							<div :class="index === 2 ? 'text-white text-2xl font-bold' : 'text-white text-[24px] font-bold'"
+								class="-mt-4 ">
 								{{ goal.current || 0 }}
 							</div>
 							<div class="flex flex-col text-[12px] my-7">
-  <!-- Círculo blanco con texto -->
-  <div class="flex items-center mb-2">
-    <div class="w-5 h-5 rounded-full bg-white border border-gray-400"></div>
-    <span class="ml-3 text-white">Carga</span>
-  </div>
+								<!-- Círculo blanco con texto -->
+								<div class="flex items-center mb-2">
+									<div class="w-5 h-5 rounded-full bg-white border border-gray-400"></div>
+									<span class="md:ml-3 text-white">Carga</span>
+								</div>
 
-  <!-- Círculo amarillo con texto -->
-  <div class="flex items-center">
-    <div class="w-5 h-5 rounded-full bg-amarillo"></div>
-    <span class="ml-3 text-white">Cargado</span>
-  </div>
-</div>
+								<!-- Círculo amarillo con texto -->
+								<div class="flex items-center">
+									<div class="w-5 h-5 rounded-full bg-amarillo"></div>
+									<span class="md:ml-3 text-white">Cargado</span>
+								</div>
+							</div>
 
 						</div>
 						<!-- Indicador Circular -->
@@ -76,7 +78,7 @@
 									class="text-amarillo transition-all duration-1000 ease-out" />
 							</svg>
 							<span
-								class="absolute inset-4 flex items-center  text-lg font-bold w-full h-full text-center text-white -mx-">
+								class="absolute inset-4 flex items-center  text-lg font-bold md:w-full md:h-full text-center text-white ">
 								{{ goal.value }}%
 							</span>
 						</div>
@@ -91,12 +93,12 @@
 import { ref, computed, onMounted } from "vue";
 import axios from 'axios';
 // Estado de las metas (si es necesario para otras funcionalidades)180deg, 
-
+const host = import.meta.env.VITE_HOST;
 const getGradientStyle = () => {
-  return {
-    background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.3) 90%)',
-    backgroundBlendMode: '',
-  };
+	return {
+		background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.3) 90%)',
+		backgroundBlendMode: '',
+	};
 };
 
 const goals = ref([
@@ -108,7 +110,7 @@ const goals = ref([
 // Duncion para obtener la informacion de las metas
 const fetchMetasData = async () => {
 	try {
-		const responseMetas = await axios.get('http://localhost:5010/api/v1/metas');
+		const responseMetas = await axios.get(`${host}:5010/api/v1/metas`);
 		const dataMetas = responseMetas.data;
 		goals.value[0].meta = dataMetas.data[0].cifra_meta;
 		goals.value[1].meta = dataMetas.data[1].cifra_meta;
@@ -125,7 +127,7 @@ const fetchMetasData = async () => {
 // Función para obtener los totales desde la API
 const fetchTotales = async () => {
 	try {
-		const responseAnual = await axios.get('http://localhost:5010/api/v1/metas/ejecuciónAnual');
+		const responseAnual = await axios.get(`${host}:5010/api/v1/metas/ejecuciónAnual`);
 		const dataAnual = responseAnual.data;
 
 		goals.value[0].current = dataAnual.total_orientados;
@@ -139,7 +141,7 @@ const fetchTotales = async () => {
 const fetchTrimestral = async () => {
 	try {
 
-		const responseTrimestral = await axios.get('http://localhost:5010/api/v1/metas/ejecucionTrimestral');
+		const responseTrimestral = await axios.get(`${host}:5010/api/v1/metas/ejecucionTrimestral`);
 		const dataTrimestral = responseTrimestral.data;
 
 		goals.value[1].current = dataTrimestral[0].count;
@@ -151,7 +153,7 @@ const fetchTrimestral = async () => {
 
 const fetchMensuales = async () => {
 	try {
-		const responseMes = await axios.get('http://localhost:5010/api/v1/metas/ejecucionMensualNotificacion');
+		const responseMes = await axios.get(`${host}:5010/api/v1/metas/ejecucionMensualNotificacion`);
 		const dataMes = responseMes.data;
 
 		goals.value[2].current = dataMes.count;
