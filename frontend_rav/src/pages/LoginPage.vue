@@ -44,7 +44,7 @@
 				<!-- Botón de iniciar sesión -->
 				<button
 					type="submit"
-					class="w-full py-3 text-lg bg-amarillo border-none text-customPurple font-bold rounded-lg"
+					class="w-full py-3 text-lg bg-amarillo border-none text-customPurple font-bold cursor-pointer rounded-lg"
 					:disabled="isLoading">
 					<span v-if="!isLoading">Iniciar</span>
 					<span v-else>Cargando...</span>
@@ -82,13 +82,14 @@ const form = reactive({
 	password: "",
 });
 
+const host = import.meta.env.VITE_HOST;
+
 const authStore = useAuthStore();
 const errorMessage = ref("");
 const isLoading = ref(false);
 const backgroundUrl = ref(""); // Variable para almacenar la URL de fondo
 const router = useRouter();
 const toast = useToast();
-const host = import.meta.env.VITE_HOST;
 
 onMounted(() => {
 	// Detecta el ancho de la pantalla después de que el componente ha sido montado
@@ -107,10 +108,7 @@ onMounted(() => {
 async function submit() {
 	isLoading.value = true;
 	try {
-		const response = await axios.post(
-			`${host}:8080/login`,
-			form
-		);
+		const response = await axios.post(`${host}:8080/login`, form);
 		console.log(response.data);
 
 		authStore.setAuthenticatedUser(response.data);

@@ -84,7 +84,7 @@
 									<span
 										v-if="submenuItem.icon"
 										v-html="submenuItem.icon"
-										class="inline-flex items-center justify-center h-4 md:h-6 lg:h-8 w-4 md:w-6 lg:w-8 mr-4">
+										class="inline-flex items-center justify-center h-4 md:h-6 lg:h-8 w-4 md:w-6 lg:w-8 md:mr-4">
 									</span>
 									<span>{{ submenuItem.title }}</span>
 								</router-link>

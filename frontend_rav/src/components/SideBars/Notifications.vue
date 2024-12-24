@@ -1,11 +1,12 @@
 <template>
-	<div class=" bg-azulBarraApe  md:w-[260px] md:xl:w-72 md:rounded-[35px] mr-2 md:mt-2 md:h-[955px]">
+	
+	<div class=" bg-azulBarraApe  md:w-[260px] md:xl:w-72 md:rounded-[35px] md:mr-2 md:mt-2 md:h-[955px]">
 		<!-- Sidebar Derecho -->
 		<div>
 			<div class="flex flex-col items-center  ">
 				<!-- Sección de Actividad -->
 				<div
-					class="bg-azulBarraApe md:w-full  flex justify-between px-4 items-center shadow-azulBarraApe lg:shadow-none rounded-tr-[35px] rounded-tl-[35px]">
+					class="bg-azulBarraApe md:w-full  flex justify-between px-4 items-center shadow-azulBarraApe md:shadow-none rounded-tr-[35px] rounded-tl-[35px] ">
 					<h2 class="text-lg md:text-xl lg:text-[24px] lg:text-center font-bold text-amarillo mt-2 ">
 						Actividad
 					</h2>
@@ -25,51 +26,51 @@
 				</div>
 				<!--linea divisora text actividad-->
 				<div class="bg-white md:w-[260px] md:h-0.5 -mt-4 "></div>
-				<div class="grid grid-cols-1 bg-azulBarraApe  items-center gap-5 p-3 ">
+				<div class="grid grid-cols-1 bg-azulBarraApe  md:gap-5 gap-2 p-3">
 					<!-- Agrega un gap para separación -->
 					<div v-for="(goal, index) in goals" :key="index"
-						class="indicator-wrapper flex items-center gap-px  overflow-hidden rounded-[35px] "
+						class="indicator-wrapper flex items-center  overflow-hidden md:rounded-[35px] rounded-lg "
 						:style="getGradientStyle(index)">
 
 
-						<!-- Texto a la derecha del indicador -->
+						<!-- Texto a la izquierda del indicador -->
 						<div class="grid grid-cols-1 justify-center items-start w-full md:h-56  md:mx-4 md:mt-5 ">
 							<div :class="index === 2 ? 'text-white' : 'text-white'"
-								class="text-[14px] font-base -mb-2 ">
+								class="md:text-[14px] font-base md:-mb-2 text-[13px]">
 								{{ goal.label }}
 							</div>
-							<div :class="index === 2 ? 'text-white text-2xl font-bold' : 'text-white text-[24px] font-bold'"
-								class="-mb-4">
+							<div :class="index === 2 ? 'text-white md:text-2xl font-bold' : 'text-white md:text-[24px] font-bold'"
+								class="md:-mb-4">
 								{{ goal.meta || 0 }}
 							</div>
 							<!--linea divisora texto meta -->
-							<div class="bg-amarillo w-[100px] h-[1px]  "></div>
+							<div class="bg-amarillo md:w-[100px] h-[1px] w-[80px] "></div>
 
 							<div :class="index === 2 ? 'text-white' : 'text-white'"
-								class="-mt-3 text-[14px] font-base ">
+								class="md:-mt-3 md:text-[14px] font-base text-[11px]">
 								Estado Actual
 							</div>
-							<div :class="index === 2 ? 'text-white text-2xl font-bold' : 'text-white text-[24px] font-bold'"
-								class="-mt-4 ">
+							<div :class="index === 2 ? 'text-white md:text-2xl font-bold' : 'text-white md:text-[24px] font-bold'"
+								class="md:-mt-4 ">
 								{{ goal.current || 0 }}
 							</div>
-							<div class="flex flex-col text-[12px] my-7">
+							<div class="flex flex-col md:text-[12px] text-[10px] my-7">
 								<!-- Círculo blanco con texto -->
-								<div class="flex items-center mb-2">
-									<div class="w-5 h-5 rounded-full bg-white border border-gray-400"></div>
+								<div class="flex items-center md:mb-2">
+									<div class="md:w-5 md:h-5 w-3 h-3 rounded-full bg-white border border-gray-400"></div>
 									<span class="md:ml-3 text-white">Carga</span>
 								</div>
 
 								<!-- Círculo amarillo con texto -->
 								<div class="flex items-center">
-									<div class="w-5 h-5 rounded-full bg-amarillo"></div>
+									<div class="md:w-5 md:h-5 rounded-full bg-amarillo w-3 h-3"></div>
 									<span class="md:ml-3 text-white">Cargado</span>
 								</div>
 							</div>
 
 						</div>
 						<!-- Indicador Circular -->
-						<div class="relative w-32 h-20 md:w-full md:h-[240px] -mb-20">
+						<div class="relative w-32 h-32 md:w-[240px] md:h-[240px] md:-mb-20  -mb-4">
 							<svg class="w-full h-full" viewBox="18 -10 75 100">
 								<circle cx="50" cy="50" r="30" stroke="lightgray" stroke-width="7" fill="none" />
 								<circle cx="50" cy="50" r="30" stroke="currentColor" :stroke-dasharray="circumference"
@@ -78,7 +79,7 @@
 									class="text-amarillo transition-all duration-1000 ease-out" />
 							</svg>
 							<span
-								class="absolute inset-4 flex items-center  text-lg font-bold md:w-full md:h-full text-center text-white ">
+								class="absolute md:inset-5 inset-4 h-[115px] flex items-center  md:text-2xl text-lg font-bold  md:h-56  text-center text-white ">
 								{{ goal.value }}%
 							</span>
 						</div>
@@ -92,6 +93,13 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import axios from 'axios';
+// Estado para controlar la visibilidad
+const isVisible = ref(true);
+
+// Función para alternar visibilidad
+const toggleVisibility = () => {
+  isVisible.value = !isVisible.value;
+};
 // Estado de las metas (si es necesario para otras funcionalidades)180deg, 
 const host = import.meta.env.VITE_HOST;
 const getGradientStyle = () => {
@@ -173,12 +181,17 @@ onMounted(() => {
 
 	setTimeout(() => {
 
-		goals.value[0].value = ((goals.value[0].current / goals.value[0].meta) * 100).toFixed(2);
-		goals.value[1].value = ((goals.value[1].current / goals.value[1].meta) * 100).toFixed(2);
-		goals.value[2].value = ((goals.value[2].current / goals.value[2].meta) * 100).toFixed(2);
+		goals.value[0].value = ((goals.value[0].current / goals.value[0].meta) * 100).toFixed(0);
+		goals.value[1].value = ((goals.value[1].current / goals.value[1].meta) * 100).toFixed(0);
+		goals.value[2].value = ((goals.value[2].current / goals.value[2].meta) * 100).toFixed(0);
 
 	}, 500);
 });
 
 </script>
-<style scoped></style>
+<style scoped>
+/* Rotación de la flecha con transición */
+.rotate-180 {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease-in-out;
+}</style>

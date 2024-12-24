@@ -1,15 +1,15 @@
 <template>
-	<div class="flex flex-col md:min-h-screen md:p-4  md:-mt-20 ">
+	<div class="flex flex-col md:min-h-screen md:p-4  md:-mt-20 -mt-16 ">
 		<!-- Sección Superior (Título, Icono, Información del Ciudadano) -->
-		<div class=" flex flex-col md:flex-row items-center justify-between p-2 rounded-lg w-full max-w-7xl mb-1">
+		<div class=" flex flex-col md:flex-row items-center justify-between md:p-2 rounded-lg  md:max-w-7xl md:mb-1">
 			<!-- Icono y Título -->
-			<div class="flex items-center mb-4 md:-0 ">
-				<div class="p-6 bg-customPurple rounded-full ">
+			<div class="flex items-center -mb-12 md:-0 ">
+				<div class="md:p-6 p-4 bg-customPurple rounded-full ">
 					<!-- Icono SVG -->
-					<img :src="Reportes" alt=" Icono de Reportes" class="w-16 h-16 " />
+					<img :src="Reportes" alt=" Icono de Reportes" class="md:w-16 md:h-16 h-8 w-9" />
 				</div>
-				<div class="ml-4 text-center md:text-left mt-14 ">
-					<p class="text-black -mb-1 text-2xl md:text-[37px]">Generar</p>
+				<div class="ml-4 text-left mt-14 ">
+					<p class="text-black -mb-1 text-lg md:text-[37px]">Generar</p>
 					<h2 class="text-customPurple text-5xl md:text-[94px] mt-0 font-bold">Reportes</h2>
 				</div>
 			</div>

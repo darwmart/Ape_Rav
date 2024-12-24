@@ -1,28 +1,25 @@
 <template>
-	<div class="md:flex md:flex-col gap-5 md:p-16 grid grid-cols-1 h-screen ">
+	<div class="md:flex md:flex-col md:gap-5 md:p-16 grid grid-cols-1 gap-3 p-4">
 		<!-- Primera Sección: Contenedores con contenido e imagen -->
-		<div class="md:flex md:gap-5 md:justify-between ">
+		<div class="md:flex md:gap-5 md:justify-between grid grid-cols-1 gap-1 justify-items-center">
 			<div
 				v-for="(image, index) in imagePaths"
 				:key="index"
-				class=" md:w-[360px] md:h-[235px]  my-card"
+				class="md:w-[360px] md:h-[235px] w-[359px] h-[159px] my-card bg-center md:rounded-[10px] bg-blend-multiply relative md:bg-inherit "
 				:style="{
 					backgroundImage:
 						'url(' +
 						image.path +
 						'), linear-gradient(180deg, rgba(0, 0, 0, 0) 16%, #315CA0 85.5%)',
-					backgroundPosition: 'center',
-					borderRadius: '10px',
-					backgroundBlendMode: 'multiply',
-					position: 'relative',
+					
 				}">
 				<!-- Contenedor para el título y el número en la parte inferior -->
 				<div
-					class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-transparent to-transparent rounded-lg ">
-					<h4 class="font-bold text-white text-lg text-center">
+					class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-transparent to-transparent rounded-lg">
+					<h4 class="md:font-bold text-white md:text-3xl text-center">
 						{{ image.title }}
 					</h4>
-					<div class="text-3xl font-semibold text-white text-center">
+					<div class="md:text-3xl font-semibold text-white text-center md:-mt-10 -mt-5">
 						<p>{{ image.count }}</p>
 					</div>
 				</div>
@@ -30,19 +27,19 @@
 		</div>
 
 		<!-- Segunda Sección: Gráficos -->
-		<div class="hidden md:grid md:gap-5  md:grid-cols-1 lg:grid-cols-1 ">
+		<div class="md:grid md:gap-5 md:grid-cols-1 lg:grid-cols-1 grid grid-cols-1 gap-3 justify-items-center">
 			<div
-				class="md:border my-card rounded-lg bg-custom-gradient  max-w-full sm:max-w-full md:h-60 p-5">
+				class="md:border my-card rounded-lg bg-custom-gradient w-[358px] h-[159px] md:w-full md:h-72 p-4">
 				<LineChart />
 			</div>
 			<div
-				class="p-4 border my-card border-azulBarraApe rounded-lg bg-white md:w-full md:max-w-full md:text-sm md:h-60">
+				class="p-4 border my-card border-azulBarraApe rounded-lg bg-white w-[358px] h-[159px] md:w-full  md:text-sm md:h-72">
 				<BarChart />
 			</div>
 		</div>
 
-		<!-- Tercera Sección: Tabla de Datos -->
-		<div class="md:grid md:grid-cols-2 gap-4 border border-azulBarraApe rounded-lg ">
+		<!-- Tercera Sección: Tabla de Datos 
+		<div class="md:grid md:grid-cols-2 gap-4 border border-azulBarraApe rounded-lg ">-->
 			<!--<table class="border-collapse my-card">
 				<thead>
 					<tr>
@@ -102,8 +99,8 @@
 						<td class="p-3 border-b">{{ row.Fecha }}</td>
 					</tr>
 				</tbody>
-			</table>-->
-		</div>
+			</table>
+		</div>-->
 	</div>
 </template>
 
