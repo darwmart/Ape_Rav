@@ -22,15 +22,15 @@
 		<!-- Sección Central (Imagen y Formulario) -->
 		<div class=" flex flex-col xl:flex-row xl:items-start  w-full max-w-9xl space-y-8 xl:space-y-9 xl:space-x-10 ">
 			<!-- Formulario a la Izquierda -->
-			<div class="flex-grow  max-w-md lg:max-w-xl  bg-white rounded-lg shadow-md w-72 p-3">
+			<div class="flex-grow  max-w-md lg:max-w-xl  bg-white rounded-lg shadow-md md:w-72 p-3">
 				<center>
 					<h3>Seleccione el tipo de reporte</h3>
 				</center>
 				<!-- Selección de Formato -->
 				<div class="mb-4">
-					<label class="block text-gray-700 text-sm font-semibold -mb-6 "></label>
+					<label class="block text-gray-700 text-sm font-semibold md:-mb-6 "></label>
 					<br>
-					<div class="radio-button text-base grid grid-flow-col items-center mx-9 mr-3">
+					<div class="radio-button md:text-base grid grid-flow-col items-center md:mx-9 md:mr-3 text-[13px]">
 						<input type="radio" id="orientados" name="role" value="Orientados" class="custom-radio"
 							v-model="selectedRole" />
 						<label for="orientados">Exportar Orientaciones</label>
