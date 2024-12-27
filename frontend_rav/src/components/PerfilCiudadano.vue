@@ -1,23 +1,20 @@
 <template>
-	<div class="min-h-screen p-4 flex flex-col  -mt-20">
+	<div class="min-h-screen md:p-4 flex flex-col  md:-mt-20 -mt-10 ">
 		<!-- Sección superior: Título e Icono -->
-		<div class="flex flex-col md:flex-row items-center justify-between p-2 rounded-lg w-full max-w-7xl mb-1">
-			<div class="flex items-center mb-4">
-				<div class="p-6 bg-azulBarraApe rounded-full">
+		<div class="flex flex-col md:flex-row items-center justify-between md:p-2 rounded-lg md:max-w-7xl">
+			<div class="flex items-center mb-3 md:mb-4 ">
+				<div class="md:p-6 bg-azulBarraApe p-4 rounded-full">
 					<!-- Icono SVG -->
-					<img
-						:src="Ciudadano"
-						alt="Icono de Ciudadano"
-						class="w-16 h-16 " />
+					<img :src="Ciudadano" alt="Icono de Ciudadano" class="md:w-16 md:h-16 h-8 w-9" />
 				</div>
-				<div class="ml-4 text-center md:text-left mt-14">
+				<div class="md:ml-4 ml-3 text-left md:mt-14">
 					<p class="text-black -mb-1 text-2xl md:text-[37px]">Perfil del</p>
 					<h2 class="text-customPurple text-5xl md:text-[94px] mt-0 font-bold">Ciudadano</h2>
 				</div>
 			</div>
 			<!-- Botones de Acción 
 			<div class="flex flex-wrap gap-4 mt-4 justify-center">-->
-				<!--<router-link
+			<!--<router-link
 					:to="{ name: 'RutaAtencionPage' }"
 					class="cursor-pointer bg-customPurple border-none text-white py-4 px-6 rounded-lg flex flex-col items-center justify-center">
 					<img
@@ -27,14 +24,14 @@
 					<span class="text-sm">Ver Ruta de Atención</span>
 				</router-link>-->
 
-				<!--<router-link
+			<!--<router-link
 					:to="{ name: 'LineaTiempoNuevaPage' }"
 					class="bg-customPurple border-none text-white py-4 px-6 rounded-lg flex flex-col items-center justify-center">
 					<img :src="VerLine" alt="Icono de Ver Línea" class="w-10 h-10 mb-2" />
 					<span class="text-sm">Ver Línea de Tiempo</span>
 				</router-link>-->
 
-				<!--<router-link
+			<!--<router-link
 					:to="{ name: 'RegistroActividadPage' }"
 					class="bg-customPurple border-none text-white py-4 px-6 rounded-lg flex flex-col items-center justify-center">
 					<img
@@ -51,84 +48,64 @@
 			<!-- Primera columna -->
 			<div class="flex-1">
 				<div class="flex items-center">
-					<label class="text-black font-semibold w-1/3"
-						>TIPO DE DOCUMENTO:</label
-					>
-					<p class="text-black w-2/3">
+					<label class="text-black font-semibold w-1/3  md:text-lg text-xs">TIPO DE DOCUMENTO:</label>
+					<p class="text-black w-2/3 md:text-lg text-xs">
 						{{ data.tipo_identificacion || "NO REGISTRA" }}
 					</p>
 				</div>
+				<div class="flex-1">
+					<div class="flex items-center">
+						<label class="text-black font-semibold w-1/3 md:text-lg text-xs">NÚMERO DE DOCUMENTO:</label>
+						<p class="text-black w-2/3 md:text-lg text-xs">
+							{{ data.identificacion || "NO REGISTRA" }}
+						</p>
+					</div>
 
-				<div class="flex items-center">
-					<label class="text-black font-semibold w-1/3">NOMBRE COMPLETO:</label>
-					<p class="text-black w-2/3">
-						{{ data.identificacion || "NO REGISTRA" }}
-					</p>
+					<div class="flex items-center">
+						<label class="text-black font-semibold w-1/3 md:text-lg text-xs">NOMBRES:</label>
+						<p class="text-black w-2/3 md:text-lg text-xs">
+							{{ data.nombres || "NO REGISTRA" }}
+						</p>
+					</div>
+					<div class="flex items-center">
+						<label class="text-black font-semibold w-1/3 md:text-lg text-xs">APELLIDOS:</label>
+						<p class="text-black w-2/3 md:text-lg text-xs">
+							{{ data.apellidos || "NO REGISTRA" }}
+						</p>
+					</div>
+
 				</div>
-
 				<div class="flex items-center">
-					<label class="text-black font-semibold w-1/3">CIUDAD:</label>
-					<p class="text-black w-2/3">{{ data.etnia || "NO REGISTRA" }}</p>
-				</div>
-
-				<div class="flex items-center">
-					<label class="text-black font-semibold w-1/3">GENERO:</label>
-					<p class="text-black w-2/3">{{ data.etnia || "NO REGISTRA" }}</p>
-				</div>
-
-				
-			</div>
-
-			<!-- Segunda columna -->
-			<div class="flex-1">
-				<div class="flex items-center">
-					<label class="text-black font-semibold w-1/3"
-						>NÚMERO DE DOCUMENTO:</label
-					>
-					<p class="text-black w-2/3">
-						{{ data.identificacion || "NO REGISTRA" }}
-					</p>
-				</div>
-
-				<div class="flex items-center">
-					<label class="text-black font-semibold w-1/3"
-						>PROCEDENCIA ÉTNICA:</label
-					>
-					<p class="text-black w-2/3">
+					<label class="text-black font-semibold w-1/3 md:text-lg text-xs">PROCEDENCIA ÉTNICA:</label>
+					<p class="text-black w-2/3 md:text-lg text-xs">
 						{{ data.etnia || "NO REGISTRA" }}
 					</p>
 				</div>
 
 				<div class="flex items-center">
-					<label class="text-black font-semibold w-1/3">ESTADO VICTIMA:</label>
-					<p class="text-black w-2/3">
-						{{ data.etnia || "NO REGISTRA" }}
+					<label class="text-black font-semibold w-1/3 md:text-lg text-xs">ESTADO VICTIMA:</label>
+					<p class="text-black w-2/3 md:text-lg text-xs">
+						{{ data.message || "NO REGISTRA" }}
 					</p>
 				</div>
 
 				<div class="flex items-center">
-					<label class="text-black font-semibold w-1/3">HECHOS:</label>
-					<p class="text-black w-2/3" v-for="(hecho, index) in data.caracterizacion" :key="index">{{ hecho || "NO REGISTRA" }}</p>
+					<label class="text-black font-semibold w-1/3 md:text-lg text-xs">HECHOS:</label>
+					<p class="text-black w-2/3 md:text-lg text-xs" v-for="(hecho, index) in data.caracterizacion"
+						:key="index">{{ hecho || "NO REGISTRA" }}</p>
 				</div>
 
-				<div class="flex items-center">
-					<label class="text-black font-semibold w-1/3"
-						>NÚMERO DE CONTACTO:</label
-					>
-					<p class="text-black w-2/3">
-						{{ data.etnia || "NO REGISTRA" }}
-					</p>
-				</div>
+
 			</div>
 		</div>
 		<!-- Historial del Ciudadano 
 		<div class="text-white rounded-lg shadow-md">-->
-			<!-- Título del historial 
+		<!-- Título del historial 
 			<div class="flex items-center bg-customPurple p-px">
 				<img :src="Historial" alt="Icono de Historial" class="w-8 h-8 mr-2" />
 				<h3 class="text-xl font-bold">HISTORIAL DEL CIUDADANO</h3>
 			</div>-->
-			<!-- Contenedor de la tabla con scroll horizontal 
+		<!-- Contenedor de la tabla con scroll horizontal 
 			<div class="overflow-x-auto">
 				<table class="min-w-full bg-white text-gray-900">
 					<thead>
@@ -178,13 +155,13 @@ const fetchData = ref([]);
 const data = ref({});
 const host = import.meta.env.VITE_HOST;
 const fetchOptions = {
-    url: `${host}:5010/api/v1/ciudadano/ValidarVictima`,
-    options: {
-        method: "POST",
-        headers: {
-            "Accept": "application/json",
-        },
-    }
+	url: `${host}:8084/api/v1/ciudadano/ValidarVictima`,
+	options: {
+		method: "POST",
+		headers: {
+			"Accept": "application/json",
+		},
+	}
 }
 // Define los props que espera el componente
 defineProps({
@@ -194,35 +171,35 @@ defineProps({
 	},
 });
 
-const getFetchData = async(fetchOptions)=>{
+const getFetchData = async (fetchOptions) => {
 	const userInfoData = unref(userInfo); // Extraemos userInfo
-    data.value = userInfoData?.data || {};
-	console.log('dar se la come dobalda; ',data.value);
-	
-	const{url,options} = fetchOptions
-	let newUrl = url+`/${userInfo.value.documento}`
+	data.value = userInfoData?.data || {};
+	console.log('dar se la come dobalda; ', data.value);
+
+	const { url, options } = fetchOptions
+	let newUrl = url + `/${userInfo.value.documento}`
 	console.log(newUrl);
-	
-	try{
-        const response = await fetch(newUrl,options);
-        const json = await response.json();
-        if (!response.ok) throw{error:true,errorStatus:response.status,errorMsg:response.statusText}
-        console.log(json)
-        fetchData.value = json;
-        
-    }catch(error){
-        if (!error.error) error.error = true
-        console.log(error)
-    }finally{
-      newUrl = ''
-    }
+
+	try {
+		const response = await fetch(newUrl, options);
+		const json = await response.json();
+		if (!response.ok) throw { error: true, errorStatus: response.status, errorMsg: response.statusText }
+		console.log(json)
+		fetchData.value = json;
+
+	} catch (error) {
+		if (!error.error) error.error = true
+		console.log(error)
+	} finally {
+		newUrl = ''
+	}
 }
 
-onMounted( () => {  
-  userInfo.value = eventStore.getUserInfo()
-  getFetchData(fetchOptions)
-  console.log(fetchData.value);
-  
+onMounted(() => {
+	userInfo.value = eventStore.getUserInfo()
+	getFetchData(fetchOptions)
+	console.log(fetchData.value);
+
 });
 
 
@@ -231,16 +208,20 @@ onMounted( () => {
 <style scoped>
 table {
 	border-collapse: separate;
-	border-spacing: 1px 1px; /* Espacio entre celdas */
+	border-spacing: 1px 1px;
+	/* Espacio entre celdas */
 	min-width: 100%;
 	margin-top: 1rem;
 }
 
 th,
 td {
-	border: 1px solid #ccc; /* Borde individual para cada celda */
-	background-color: #fff; /* Fondo blanco para celdas */
-	text-align: left; /* Alinear texto a la izquierda */
+	border: 1px solid #ccc;
+	/* Borde individual para cada celda */
+	background-color: #fff;
+	/* Fondo blanco para celdas */
+	text-align: left;
+	/* Alinear texto a la izquierda */
 }
 
 thead th {
@@ -253,10 +234,12 @@ thead th {
 }
 
 tbody tr:hover td {
-	background-color: #f9f9f9; /* Fondo más claro al pasar el cursor */
+	background-color: #f9f9f9;
+	/* Fondo más claro al pasar el cursor */
 }
 
 tbody td {
-	padding: 10px; /* Espaciado interno en las celdas */
+	padding: 10px;
+	/* Espaciado interno en las celdas */
 }
 </style>

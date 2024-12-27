@@ -47,6 +47,7 @@ const chartOptions = reactive({
 	layout: {
 		padding: {
 			right: 50,
+
 		},
 	},
 	scales: {
@@ -109,7 +110,7 @@ const chartOptions = reactive({
 
 const fetchMensuales = async () => {
 	try {
-		const responseMes = await axios.get(`${host}:5010/api/v1/metas/ejecucionMensual`);
+		const responseMes = await axios.get(`${host}:8084/api/v1/metas/ejecucionMensual`);
 		const dataMes = responseMes.data;
 
 		const monthIndex = (yearMonth) => parseInt(yearMonth.split('-')[1], 10) - 1;

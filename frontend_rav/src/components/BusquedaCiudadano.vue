@@ -1,7 +1,7 @@
 <template>
-    <div class="md:grid md:grid-cols-2 grid grid-cols-1 relative">
+    <div class="md:grid md:grid-cols-2 grid grid-cols-1 relative h-screen">
         <!-- Contenedor del Título -->
-        <div class="absolute -mt-8 left-0 w-full p-1   md:hidden">
+        <div class="absolute -mt-8 left-0 w-full p-1 md:hidden">
             <p class="text-xl font-medium text-center">
                 Aquí podrás visualizar información acerca de la
             </p>
@@ -11,13 +11,13 @@
         </div>
 
         <!-- Contenedor de la Imagen -->
-        <div class="md:flex md:items-center md:justify-center relative md:mt-0 mt-36 -mb-14">
+        <div class="md:flex md:items-center md:justify-center relative md:mt-0 mt-36 -mb-14 mx-7">
             <img src="@/assets/images/CiudadanoRutaAtencion.svg" alt="Persona sonriendo"
-                class="md:rounded-lg md:object-cover md:h-[782px] md:mt-12 h-[472px] " />
+                class="md:rounded-lg md:object-cover md:h-[782px] md:mt-12 h-[472px]" />
             
             <!-- Formulario encima de la imagen en pantallas pequeñas -->
             <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center md:hidden">
-                <div class="bg-white bg-opacity-80 p-6 rounded-lg shadow-lg  mt-44">
+                <div class="bg-white bg-opacity-80 p-6 rounded-lg shadow-lg mt-44">
                     <!-- Select para Tipo de Identificación -->
                     <select v-model="selectedTipoIdentificacion"
                         class="w-full h-4 p-4 mb-2 border text-black rounded-lg bg-grisFondo">
@@ -39,9 +39,9 @@
         </div>
 
         <!-- Contenedor del Texto y Formulario en Pantallas Grandes -->
-        <div class="md:flex md:items-center md:justify-center md:p-6 md:h-full hidden ">
+        <div class="md:flex md:items-center md:justify-center md:p-6 md:h-full hidden overflow-y-scroll">
             <div class="lg:pl- lg:pr-10">
-                <div class="-mb-4 w-full h-">
+                <div class="-mb-4 w-full">
                     <p class="md:text-4xl md:font-medium md:-mb-10 text-xl">
                         Aquí podrás visualizar información acerca de la
                     </p>
@@ -66,19 +66,19 @@
                     </div>
                 </div>
             </div>
-        <Dialog v-model:visible="noResultsModal" modal header="Búsqueda Fallida" :style="{ width: '30rem' }">
-            <p class="m-0 text-azulBarraApe">
-                {{ modalMessage }}
-                <strong>{{ searchCedula }}</strong>
-            </p>
-            <template #footer>
-                <Button label="Cerrar" @click="noResultsModal = false" class="p-button-text" />
-            </template>
-        </Dialog>
-    </div>
-    
+            <Dialog v-model:visible="noResultsModal" modal header="Búsqueda Fallida" :style="{ width: '30rem' }">
+                <p class="m-0 text-azulBarraApe">
+                    {{ modalMessage }}
+                    <strong>{{ searchCedula }}</strong>
+                </p>
+                <template #footer>
+                    <Button label="Cerrar" @click="noResultsModal = false" class="p-button-text" />
+                </template>
+            </Dialog>
+        </div>
     </div>
 </template>
+
 
 <script setup>
 import CiudadanoRutaAtencion from '@/assets/images/CiudadanoRutaAtencion.svg';
@@ -105,7 +105,7 @@ async function searchByCedula(tipoId, cedula) {
     };
     try {
         const response = await axios.post(
-            `${host}:5010/api/v1/ciudadano/ValidarVictima`,
+            `${host}:8084/api/v1/ciudadano/ValidarVictima`,
             body,
             {
                 headers: {
@@ -149,4 +149,5 @@ const searchUser = async () => {
 
     loading.value = false;
 };
+
 </script>

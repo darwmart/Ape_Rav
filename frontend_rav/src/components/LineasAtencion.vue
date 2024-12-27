@@ -1,133 +1,103 @@
 <template>
-	<div class="min-h-screen p-4 flex flex-col  -mt-20">
-    <!-- Sección Superior (Título, Icono, Información del Ciudadano) -->
-		<div class="flex flex-col md:flex-row items-center justify-between p-2 rounded-lg w-full max-w-7xl mb-1">
-      <!-- Icono y Título -->
-			<div class="flex items-center mb-4">
-        <div class="p-6 bg-azulBarraApe rounded-full">
-          <!-- Icono SVG -->
-          <img :src="lineaAten" 
-                alt=" Icono de Lineas de atencion" 
-                class="w-16 h-16 "/>
-        </div>
-        <div class="ml-4 text-center md:text-left mt-14">
-          <p class="text-black -mb-1 text-2xl md:text-[37px]">Lineas de</p>
-          <h2 class="text-customPurple text-5xl md:text-[94px] mt-0 font-bold">Atención</h2>
-        </div>
-      </div>
-    </div>
+	<div class="min-h-screen md:p-4 flex flex-col  md:-mt-20 -mt-10 ">
+		<!-- Sección Superior (Título, Icono, Información del Ciudadano) -->
+		<div class="flex flex-col md:flex-row items-center justify-between md:p-2 rounded-lg md:max-w-7xl">
+			<!-- Icono y Título -->
+			<div class="flex items-center mb-3 md:-mb-0 ">
+				<div class="md:p-6 bg-azulBarraApe p-4 rounded-full">
+					<!-- Icono SVG -->
+					<img :src="lineaAten" 
+					alt=" Icono de Lineas de atencion" 
+					class="md:w-16 md:h-16 h-8 w-9" />
+				</div>
+				<div class="md:ml-4 ml-3 text-left md:mt-14">
+					<p class="text-black -mb-1 text-2xl md:text-[37px]">Lineas de</p>
+					<h2 class="text-customPurple text-5xl md:text-[94px] mt-0 font-bold">Atención</h2>
+				</div>
+			</div>
+		</div>
 
 		<!-- Sección de Selección de Entidades -->
 		<div class="md:flex-col md:gap-7 md:p-4  grid grid-col gap-2">
 			<!-- Subtítulo de Selección -->
 			<div class="flex items-center space-x-1 flex-auto -mb-5">
-        <img :src="select1" alt="Icono de selección 1" class="w-5 h-5 " />
-        <p class="font-sans text-sm md:text-xl">Seleccione la</p>
-        <h3 class="font-sans text-sm md:text-xl">Entidad</h3>
-      </div>
+				<img :src="select1" alt="Icono de selección 1" class="w-5 h-5 " />
+				<p class="font-sans text-sm md:text-xl">Seleccione la</p>
+				<h3 class="font-sans text-sm md:text-xl">Entidad</h3>
+			</div>
 
 			<!-- Contenedor de Imágenes de Entidades -->
 			<div class="md:flex md:justify-between grid grid-cols-2  items-center gap-x-3 gap-y-8 p-2 ">
 				<!-- SENA -->
-				<div
-class="md:w-72 md:h-36 md:flex md:flex-col items-center rounded-lg cursor-pointer md:p-2 shadow-md h-24 w-42 justify-center"
-					:class="{ 'ring ring-customPurple': selectedEntity === 'sena' }"
-					@click="
-						() =>
+				<div class="md:w-72 md:h-36 md:flex md:flex-col items-center rounded-lg cursor-pointer md:p-2 shadow-md h-24 w-42 justify-center"
+					:class="{ 'ring ring-customPurple': selectedEntity === 'sena' }" @click="() =>
 							handleEntityClick({
 								image: LogoSenaverde,
 								sede: sedes[0],
 								newEntity: 'sena',
 							})
-					">
-					<img :src="LogoSenaverde" alt="Logo Verde SENA" class="md:w-20 md:h-40 object-center md:-mt-1 w-40 h-16 mt-4" />
+						">
+					<img :src="LogoSenaverde" alt="Logo Verde SENA"
+						class="md:w-20 md:h-40 object-center md:-mt-1 w-40 h-16 mt-4" />
 				</div>
 
 				<!-- APE -->
-				<div
-					  class="md:w-72 md:h-36 md:flex md:flex-col items-center rounded-lg cursor-pointer  shadow-md h-24 w-40 "
-					:class="{ 'ring ring-customPurple': selectedEntity === 'ape' }"
-					@click="
-						() =>
+				<div class="md:w-72 md:h-36 md:flex md:flex-col items-center rounded-lg cursor-pointer  shadow-md h-24 w-40 "
+					:class="{ 'ring ring-customPurple': selectedEntity === 'ape' }" @click="() =>
 							handleEntityClick({
 								image: LogoApe,
 								sede: sedes[1],
 								newEntity: 'ape',
 							})
-					">
-					<img
-						:src="LogoApe"
-						alt="Logo APE"
-						class="object-scale-down md:h-48 md:w-64 w-44 h-12 mt-7 "  />
+						">
+					<img :src="LogoApe" alt="Logo APE" class="object-scale-down md:h-48 md:w-64 w-44 h-12 mt-7 " />
 				</div>
 
 				<!-- Certificaciones -->
-				<div
-					class="md:w-72 md:h-36 md:flex md:flex-col items-center rounded-lg cursor-pointer md:p-2 shadow-md h-24 w-42 px-2"
+				<div class="md:w-72 md:h-36 md:flex md:flex-col items-center rounded-lg cursor-pointer md:p-2 shadow-md h-24 w-42 px-2"
 					:class="{
 						'ring ring-customPurple': selectedEntity === 'certificaciones',
-					}"
-					@click="
-						() =>
+					}" @click="() =>
 							handleEntityClick({
 								image: LogCertLab,
 								sede: sedes[2],
 								newEntity: 'certificaciones',
 							})
-					">
-					<img
-						:src="LogCertLab"
-						alt="Certificados Laborales"
-						class="object-scale-down md:h-48 md:w-64  w-36 h-5 mt-10 mb-4"  />
+						">
+					<img :src="LogCertLab" alt="Certificados Laborales"
+						class="object-scale-down md:h-48 md:w-64  w-36 h-5 mt-10 mb-4" />
 				</div>
 
 				<!-- Fondo Emprender -->
-				<div
-				class="md:w-72 md:h-36 md:flex md:flex-col items-center rounded-lg cursor-pointer p-2 shadow-md h-24 w-42"					:class="{
+				<div class="md:w-72 md:h-36 md:flex md:flex-col items-center rounded-lg cursor-pointer p-2 shadow-md h-24 w-42"
+					:class="{
 						'ring ring-customPurple': selectedEntity === 'fondoEmprender',
-					}"
-					@click="
-						() =>
+					}" @click="() =>
 							handleEntityClick({
 								image: FondoEmprender,
 								sede: sedes[3],
 								newEntity: 'fondoEmprender',
 							})
-					">
-					<img
-						:src="FondoEmprender"
-						alt="Fondo Emprender"
+						">
+					<img :src="FondoEmprender" alt="Fondo Emprender"
 						class="object-scale-down md:h-48 md:w-64 object-center w-36 h-7 mt-8 mb-2" />
 				</div>
 			</div>
 
-			<!-- Títulos debajo de Entidades 
-			<div class="flex gap-5 flex-auto -mb-8">
-				<h4 class="font-bold mt-1 ml-20 text-center">SENA</h4>
-				<h4 class="font-bold mt-1 ml-36 text-center">APE</h4>
-				<h4 class="font-bold mt-1 ml-24 text-center">Certificaciones</h4>
-				<h4 class="font-bold mt-1 ml-7 text-center">Fondo Emprender</h4>
-			</div>-->
-
 			<!-- Sección de Selección de Regional -->
 			<div class="flex items-center space-x-1 flex-auto -mb-3">
-				<img :src="select2" alt="Icono de Selección 2" width="25" height="25" />
+				<img :src="select2" alt="Icono de Selección 2" class="w-5 h-5 "  />
 				<p class="font-sans">Seleccione la</p>
 				<h3 class="font-sans font-bold">Regional</h3>
 			</div>
 
 			<!-- Dropdown de Departamentos -->
 			<div class="flex items-center space-x-2 h-1hadow-md">
-				<Select
-					v-model="selectedCountry"
-					:options="departamentos"
-					placeholder="Seleccione departamento"
+				<Select v-model="selectedCountry" :options="departamentos" placeholder="Seleccione departamento"
 					class="w-full rounded-lg shadow-sm text-customPurple !border !border-customPurple"
 					@change="updateSelectedInfo">
 					<template #value="slotProps">
-						<div
-							v-if="slotProps.value"
-							class="flex gap-2 items-center font-semibold text-customPurple">
+						<div v-if="slotProps.value" class="flex gap-2 items-center font-semibold text-customPurple">
 							<div>{{ slotProps.value.name }}</div>
 						</div>
 						<span v-else class="text-customPurple">{{
@@ -146,39 +116,22 @@ class="md:w-72 md:h-36 md:flex md:flex-col items-center rounded-lg cursor-pointe
 			<div class="flex items-center justify-center">
 				<Button
 					class="w-72 !bg-customPurple text-lg cursor-pointer border-none !text-amarillo font-bold py-2 rounded-lg shadow-md mt-4"
-					type="button"
-					label="Buscar"
-					icon="pi pi-search"
-					:loading="loading"
-					@click="validateAndSearch" />
+					type="button" label="Buscar" icon="pi pi-search" :loading="loading" @click="validateAndSearch" />
 			</div>
 
 			<!-- Componente de PopUp -->
-			<PopUp
-				:data="fetchData"
-				:isOpen="isModalOpen"
-				:image="selectedImage"
-				:sede="selectedSede"
-				:departamento="selectedCountry?.name"
-				@close="isModalOpen = false" />
+			<PopUp :data="fetchData" :isOpen="isModalOpen" :image="selectedImage" :sede="selectedSede"
+				:departamento="selectedCountry?.name" @close="isModalOpen = false" />
 		</div>
 
-		<Dialog
-			v-model:visible="noResultsModal"
-			modal
-			header="Búsqueda Fallida"
-			:style="{ width: '30rem' }"
-			:closable="true"
-			:draggable="true">
+		<Dialog v-model:visible="noResultsModal" modal header="Búsqueda Fallida" :style="{ width: '30rem' }"
+			:closable="true" :draggable="true">
 			<p class="m-0 text-customPurple">
 				Por favor seleccione una entidad y un departamento para continuar con la
 				búsqueda.
 			</p>
 			<template #footer>
-				<Button
-					label="Entendido"
-					@click="noResultsModal = false"
-					class="p-button-text" />
+				<Button label="Entendido" @click="noResultsModal = false" class="p-button-text" />
 			</template>
 		</Dialog>
 	</div>
@@ -258,7 +211,7 @@ const validateAndSearch = async () => {
 		noResultsModal.value = true; // Mostrar modal si faltan datos
 		return;
 	}
-	
+
 
 	// Construir la URL dinámica
 	const fetchOptions = {
@@ -355,12 +308,16 @@ const handleEntityClick = (options) => {
 
 <style scoped>
 .ring {
-	box-shadow: 0 0 0 2px #315CA0; /* Tamaño y color del ring */
-	border-radius: 0.5rem; /* Ajustar el radio según el diseño */
-	transition: box-shadow 0.2s ease-in-out; /* Suavidad en la transición */
+	box-shadow: 0 0 0 2px #315CA0;
+	/* Tamaño y color del ring */
+	border-radius: 0.5rem;
+	/* Ajustar el radio según el diseño */
+	transition: box-shadow 0.2s ease-in-out;
+	/* Suavidad en la transición */
 }
 
 .ring-customPurple {
-	box-shadow: 0 0 0 2px #315CA0; /* Color personalizado */
+	box-shadow: 0 0 0 2px #315CA0;
+	/* Color personalizado */
 }
 </style>

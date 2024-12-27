@@ -44,7 +44,7 @@ const chartOptions = reactive({
 // Función para obtener los datos desde la API
 const fetchEtnias = async () => {
 	try {
-		const response = await axios.get(`${host}:5010/api/v1/metas/ejecucionEtnia`);
+		const response = await axios.get(`${host}:8084/api/v1/metas/ejecucionEtnia`);
 		const dataEtnia = response.data;
 
 		// Extraer etiquetas y valores

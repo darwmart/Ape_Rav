@@ -3,12 +3,12 @@
 		v-if="props.isOpen"
 		class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
 		<div
-			class="relative bg-white rounded-lg shadow-lg w-full sm:w-3/4 lg:w-2/3 xl:w-1/2 max-h-[90vh] overflow-hidden">
+			class="relative bg-white rounded-lg shadow-lg w-full sm:w-3/4 lg:w-2/3 xl:w-1/2 max-h-[80vh] overflow-hidden">
 			<!-- Botón para cerrar -->
 			<button
 				@click="closeModal"
 				aria-label="Cerrar"
-				class="absolute top-2 cursor-pointer right-2 bg-white border-2 border-customPurple text-customPurple hover:bg-customPurple hover:text-white rounded-full w-10 h-10 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-customPurple transition-all duration-200"
+				class="absolute top-2 cursor-pointer md:right-6 right-2 bg-white border-2 border-customPurple text-customPurple hover:bg-customPurple hover:text-white rounded-full w-10 h-10 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-customPurple transition-all duration-200"
 				tabindex="0">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -22,19 +22,19 @@
 				</svg>
 			</button>
 
-			<div class="p-4 sm:p-6 overflow-y-auto max-h-[80vh]">
+			<div class="md:p-4 p-3 overflow-y-auto max-h-[70vh]">
 				<!-- Imagen y título -->
 				<div class="flex flex-col sm:flex-row items-center gap-4 mb-4">
 					<img
 						v-if="props.image"
 						:src="props.image"
 						alt="Selected"
-						class="h-20 w-auto rounded-md" />
+						class="md:h-20 w-auto h-16 rounded-md" />
 					<div class="text-center sm:text-left">
 						<h3 v-if="props.sede" class="text-lg font-semibold">
 							{{ props.sede }}
 						</h3>
-						<h3 v-if="props.departamento" class="text-sm text-gray-600">
+						<h3 v-if="props.departamento" class="md:text-lg text-sm -mt-5 text-gray-600 md:mb-4 ">
 							({{ props.departamento }})
 						</h3>
 					</div>

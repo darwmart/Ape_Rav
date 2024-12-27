@@ -1,28 +1,28 @@
 <template>
-	<div class="min-h-screen p-4 flex flex-col -mt-20">
+	<div class="min-h-screen md:p-4 flex flex-col  md:-mt-20 -mt-10 ">
 		<!-- Sección Superior -->
-		<div class="flex flex-col md:flex-row items-center justify-between p-2 rounded-lg w-full max-w-7xl mb-1">		
+		<div class="flex flex-col md:flex-row items-center justify-between md:p-2 rounded-lg md:max-w-7xl">		
 			<div class="flex items-center mb-4">
-				<div class="p-6 bg-azulBarraApe rounded-full">
+				<div class="md:p-6 bg-azulBarraApe p-4 rounded-full">
 					<img :src="ListaUsuarios" 
 					alt="Icono de ListaUsuarios" 
-					class="w-16 h-16 " />
+					class="md:w-16 md:h-16 h-8 w-9" />
 				</div>
-				<div class="ml-4 text-center md:text-left mt-14">
+				<div class="md:ml-4 ml-3 text-left md:mt-14">
 					<p class="text-black -mb-1 text-2xl md:text-[37px]">Lista de</p>
-					<h2 class="text-customPurple text-5xl md:text-[94px] mt-0 font-bold">Usuarios</h2>
+					<h2 class="text-customPurple text-5xl md:text-[94px] mt-0  font-bold">Usuarios</h2>
 				</div>
 			</div>
 			<!-- Botón de Registrar Usuario -->
 			<button @click="showRegisterModal = true"
-				class="bg-customPurple text-white py-4 cursor-pointer hover:bg-moradoSecundario shadow-lg border-none px-6 rounded-lg flex flex-col items-center justify-center transition duration-300">
-				<img :src="RegistroUsuario" alt="Registrar Usuario" class="w-16 h-16 mb-2" />
-				<span class="text-center font-bold text-white">Registrar Usuario</span>
+				class="bg-customPurple text-white md:py-4 cursor-pointer hover:bg-moradoSecundario shadow-lg border-none md:px-6 w-full md:w-44  md:rounded-lg rounded-full flex md:flex-col items-center justify-center transition duration-300 md:mb-0 mb-6 -mt-6 md:-mt-0">
+				<img :src="RegistroUsuario" alt="Registrar Usuario" class="md:w-16 md:h-16 md:mb-2 p-1 h-10 w-10 " />
+				<span class="md:text-center font-bold text-white md:ml-0 ml-3">Registrar Usuario</span>
 			</button>
 		</div>
 
 		<!-- Tabla de usuarios -->
-		<div class="overflow-x-auto w-full max-w-7xl bg-white shadow-xl rounded-3xl">
+		<div class="overflow-x-auto w-full max-w-7xl bg-white shadow- rounded-3xl">
 			<!-- Tabla -->
 			<table class="min-w-full table-auto p-3 ">
 				<!-- Cabecera de la tabla -->

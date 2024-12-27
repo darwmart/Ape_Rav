@@ -1,19 +1,19 @@
 <template>
 	
-	<div class=" bg-azulBarraApe  md:w-[260px] md:xl:w-72 md:rounded-[35px] md:mr-2 md:mt-2 md:h-[955px]">
+	<div class=" bg-azulBarraApe  md:w-[260px] md:xl:w-72 md:rounded-[35px] md:mr-2 md:mt-2 md:h-[955px] ">
 		<!-- Sidebar Derecho -->
 		<div>
-			<div class="flex flex-col items-center  ">
+			<div class="flex flex-col items-center">
 				<!-- Sección de Actividad -->
 				<div
 					class="bg-azulBarraApe md:w-full  flex justify-between px-4 items-center shadow-azulBarraApe md:shadow-none rounded-tr-[35px] rounded-tl-[35px] ">
 					<h2 class="text-lg md:text-xl lg:text-[24px] lg:text-center font-bold text-amarillo mt-2 ">
 						Actividad
 					</h2>
-					<div class="md:w-9 -mt-4">
+					<div class="md:w-9 md:-mt-4 -mt-2 ">
 						<router-link to="/IndicadoresActividad">
 							<span>
-								<svg width="40" height="40" viewBox="0 0 30 35" fill="none"
+								<svg class="md:w-10 md:h-10 h-6 w-6 " viewBox="0 0 30 35" fill="none"
 									xmlns="http://www.w3.org/2000/svg">
 									<rect x="0.5" y="-0.000244141" width="40.0001" height="40.0003" rx="20" />
 									<path
@@ -26,10 +26,10 @@
 				</div>
 				<!--linea divisora text actividad-->
 				<div class="bg-white md:w-[260px] md:h-0.5 -mt-4 "></div>
-				<div class="grid grid-cols-1 bg-azulBarraApe  md:gap-5 gap-2 p-3">
+				<div class="md:grid md:grid-cols-1 bg-azulBarraApe  md:gap-5 gap-2 md:p-3 flex flex-col p-2 flex-grow">
 					<!-- Agrega un gap para separación -->
 					<div v-for="(goal, index) in goals" :key="index"
-						class="indicator-wrapper flex items-center  overflow-hidden md:rounded-[35px] rounded-lg "
+						class="indicator-wrapper flex items-center  overflow-hidden md:rounded-[35px] rounded-lg bg-"
 						:style="getGradientStyle(index)">
 
 
@@ -118,7 +118,7 @@ const goals = ref([
 // Duncion para obtener la informacion de las metas
 const fetchMetasData = async () => {
 	try {
-		const responseMetas = await axios.get(`${host}:5010/api/v1/metas`);
+		const responseMetas = await axios.get(`${host}:8084/api/v1/metas`);
 		const dataMetas = responseMetas.data;
 		goals.value[0].meta = dataMetas.data[0].cifra_meta;
 		goals.value[1].meta = dataMetas.data[1].cifra_meta;
@@ -135,7 +135,7 @@ const fetchMetasData = async () => {
 // Función para obtener los totales desde la API
 const fetchTotales = async () => {
 	try {
-		const responseAnual = await axios.get(`${host}:5010/api/v1/metas/ejecuciónAnual`);
+		const responseAnual = await axios.get(`${host}:8084/api/v1/metas/ejecuciónAnual`);
 		const dataAnual = responseAnual.data;
 
 		goals.value[0].current = dataAnual.total_orientados;
@@ -149,7 +149,7 @@ const fetchTotales = async () => {
 const fetchTrimestral = async () => {
 	try {
 
-		const responseTrimestral = await axios.get(`${host}:5010/api/v1/metas/ejecucionTrimestral`);
+		const responseTrimestral = await axios.get(`${host}:8084/api/v1/metas/ejecucionTrimestral`);
 		const dataTrimestral = responseTrimestral.data;
 
 		goals.value[1].current = dataTrimestral[0].count;
@@ -161,7 +161,7 @@ const fetchTrimestral = async () => {
 
 const fetchMensuales = async () => {
 	try {
-		const responseMes = await axios.get(`${host}:5010/api/v1/metas/ejecucionMensualNotificacion`);
+		const responseMes = await axios.get(`${host}:8084/api/v1/metas/ejecucionMensualNotificacion`);
 		const dataMes = responseMes.data;
 
 		goals.value[2].current = dataMes.count;
